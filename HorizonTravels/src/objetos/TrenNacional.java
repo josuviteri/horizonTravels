@@ -5,9 +5,10 @@ public class TrenNacional extends Tren{
 
 	private double impuestoNacional;
 
-	public TrenNacional(int id, String origen, String destino, String fecha, int duracion, String compania) {
-		super(id, origen, destino, fecha, duracion, compania);
-		// TODO Auto-generated constructor stub
+
+	public TrenNacional(double impuestoNacional) {
+		super();
+		this.impuestoNacional = impuestoNacional;
 	}
 
 	public double getImpuestoNacional() {

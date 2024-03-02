@@ -5,9 +5,11 @@ public class BarcoInter extends Barco{
 
 	private double impuestoInter;
 
-	public BarcoInter(int id, String origen, String destino, String fecha, int duracion, String compania) {
-		super(id, origen, destino, fecha, duracion, compania);
-		// TODO Auto-generated constructor stub
+
+
+	public BarcoInter(double impuestoInter) {
+		super();
+		this.impuestoInter = impuestoInter;
 	}
 
 	public double getImpuestoInter() {

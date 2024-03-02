@@ -4,11 +4,13 @@ public class VueloInter extends Vuelo{
 
 	private double impuestoInter;
 
-	public VueloInter(int id, String origen, String destino, String fecha, int duracion, String aerolinea) {
-		super(id, origen, destino, fecha, duracion, aerolinea);
-		// TODO Auto-generated constructor stub
-	}
 
+
+
+	public VueloInter(double impuestoInter) {
+		super();
+		this.impuestoInter = impuestoInter;
+	}
 
 	public double getImpuestoInter() {
 		return impuestoInter;

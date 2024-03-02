@@ -4,13 +4,14 @@ public class TrenInter extends Tren{
 	 
 	private double impuestoInter;
 
-	public TrenInter(int id, String origen, String destino, String fecha, int duracion, String compania) {
-		super(id, origen, destino, fecha, duracion, compania);
-		// TODO Auto-generated constructor stub
-	}
 
 	 
 
+
+	public TrenInter(double impuestoInter) {
+		super();
+		this.impuestoInter = impuestoInter;
+	}
 
 	public double getImpuestoNacional() {
 		return impuestoInter;

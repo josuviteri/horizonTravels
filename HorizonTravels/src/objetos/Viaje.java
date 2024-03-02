@@ -3,6 +3,15 @@ package objetos;
 import java.util.List;
 
 public class Viaje {
-    private List<Reserva> listaReservas;
-    private List<Pasajero> listaPasajeros;
+	protected String codigo;
+	protected Long fecha;
+	protected Estacion origen;
+	protected Estacion destino;
+	protected Company company;
+	protected Medio medio;
+	protected double precioBase;
+	protected List<Asiento> asientos;
+	
+
+	
 }

@@ -1,21 +1,17 @@
 package objetos;
 
 public class VueloNacional extends Vuelo{
-	 private double impuestoNacional;
 
-	public VueloNacional(int id, String origen, String destino, String fecha, int duracion, String aerolinea,
-			double impuestoNacional) {
-		super(id, origen, destino, fecha, duracion, aerolinea);
+
+
+	public VueloNacional(double impuestoNacional) {
+		super();
 		this.impuestoNacional = impuestoNacional;
 	}
 
-	public double getImpuestoNacional() {
-		return impuestoNacional;
-	}
 
-	public void setImpuestoNacional(double impuestoNacional) {
-		this.impuestoNacional = impuestoNacional;
-	}
+	private double impuestoNacional;
+
 	 
 	 @Override
 	    public double calcularPrecio() {
