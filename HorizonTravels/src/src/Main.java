@@ -56,7 +56,7 @@ public class Main {
 
         // Agregar el viaje a la lista de viajes de la compañía
         company.getViajes().add(viaje);
-
+        
         // Imprimir información de ejemplo
         System.out.println("Información del Viaje:");
         System.out.println("Código: " + viaje.getCodigo());
@@ -65,6 +65,8 @@ public class Main {
         System.out.println("Estación de Origen: " + viaje.getOrigen().getNombre());
         System.out.println("Estación de Destino: " + viaje.getDestino().getNombre());
         System.out.println("Precio Base: " + viaje.getPrecioBase());
+        System.out.println("Impuesto de "+ viaje.getMedio().getClass().getSimpleName() + " : " + ((VueloInter) viaje.getMedio()).getImpuestoInter());
+        System.out.println("Precio con Impuestos: "+ (viaje.getPrecioBase() + ((VueloInter) viaje.getMedio()).getImpuestoInter()) );
         System.out.println("Medio de Transporte: " + viaje.getMedio().getClass().getSimpleName());
         System.out.println("Cantidad Total de Asientos : " + viaje.getAsientos().size());
         System.out.println("Asientos Libres: " + viaje.asientosLibres());
