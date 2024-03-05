@@ -1,5 +1,6 @@
 package objetos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Viaje {
@@ -21,7 +22,7 @@ public class Viaje {
 
 		this.medio = medio;
 		this.precioBase = precioBase;
-		this.asientos = asientos;
+		this.asientos = new ArrayList<>();
 	}
 
 	public String getCodigo() {
@@ -80,7 +81,20 @@ public class Viaje {
 		this.asientos = asientos;
 	}
 	
+	public int asientosLibres() {
+		Integer i = 0;
+		for (Asiento asiento : asientos) {
+			if(asiento.disponibilidad) {
+				i += 1;
+			}
+		}
+		return i;	
+	}
 	
+	public int asientosOcupados() {
+		Integer i = asientos.size() - asientosLibres();
+		return i;	
+	}
 
 	
 }

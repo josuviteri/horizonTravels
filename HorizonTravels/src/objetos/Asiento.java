@@ -4,12 +4,24 @@ public class Asiento {
 	protected Viaje viaje;
     protected boolean disponibilidad;
     protected String pasajero;
-	public Asiento(Viaje viaje, boolean disponibilidad, String pasajero) {
+	
+    
+  //constructor asiento vacio
+    public Asiento(Viaje viaje) {
 		super();
 		this.viaje = viaje;
-		this.disponibilidad = disponibilidad;
+		this.disponibilidad = true;
+		this.pasajero = null;
+	}
+	
+//	constructor asiento ocupado
+	public Asiento(Viaje viaje, String pasajero) {
+		super();
+		this.viaje = viaje;
+		this.disponibilidad = false;
 		this.pasajero = pasajero;
 	}
+	
 	public Viaje getViaje() {
 		return viaje;
 	}
