@@ -38,13 +38,15 @@ public class Estacion {
 		this.ciudad = ciudad;
 	}
 
-	public Pais getPais() {
+	public String getPais() {
 		return pais;
 	}
 
-	public void setPais(Pais pais) {
+	public void setPais(String pais) {
 		this.pais = pais;
 	}
+
+
 	
 	
 	

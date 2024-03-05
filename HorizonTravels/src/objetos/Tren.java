@@ -8,6 +8,16 @@ public abstract class Tren extends Medio{
 
 
 
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
+
+
 	public abstract double calcularPrecio();
 
 }

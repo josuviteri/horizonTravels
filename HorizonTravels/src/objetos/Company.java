@@ -34,20 +34,21 @@ public class Company implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public Pais getPais() {
+	public String getPais() {
 		return pais;
 	}
 
-	public void setPais(Pais pais) {
+	public void setPais(String pais) {
 		this.pais = pais;
 	}
 
-	public List<Vuelo> getVuelos() {
-		return vuelos;
+	public List<Viaje> getViajes() {
+		return viajes;
 	}
 
-	public void setVuelos(List<Vuelo> vuelos) {
-		this.vuelos = vuelos;
+	public void setViajes(List<Viaje> viajes) {
+		this.viajes = viajes;
 	}
+
 
 }
