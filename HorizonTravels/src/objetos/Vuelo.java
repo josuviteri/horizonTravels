@@ -1,19 +1,12 @@
 package objetos;
 
-import java.util.List;
+
 
 public abstract class Vuelo extends Medio{
-
-
-
-
-
-
-	protected Company company;
-
-	
-
-
+    protected Viaje viaje;
+	 public Vuelo(double impuestoNacional, double impuestoInter) {
+	        super(impuestoNacional, impuestoInter);
+	    }
 
 
 	public abstract double calcularPrecio();

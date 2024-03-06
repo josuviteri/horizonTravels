@@ -2,20 +2,19 @@ package objetos;
 
 public class VueloNacional extends Vuelo{
 
-
-
+	
 	public VueloNacional(double impuestoNacional) {
-		super();
-		this.impuestoNacional = impuestoNacional;
+		super(impuestoNacional, 0);
 	}
-
-
-	private double impuestoNacional;
+	
+	public double getImpuestoNacional() {
+		return impuestoNacional;
+	}
 
 	 
 	 @Override
 	    public double calcularPrecio() {
 	        // Precio base + impuesto internacional
-	        return 500 + impuestoNacional;
+	        return getViaje().getPrecioBase() + impuestoNacional;
 	    }
 }

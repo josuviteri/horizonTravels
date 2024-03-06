@@ -1,22 +1,13 @@
 package objetos;
 
-import java.util.List;
 
 public abstract class Tren extends Medio{
-	
-	protected Company company;
 
+    protected Viaje viaje;
+	public Tren(double impuestoNacional, double impuestoInter) {
+		super(impuestoNacional, impuestoInter);
 
-
-	public Company getCompany() {
-		return company;
 	}
-
-	public void setCompany(Company company) {
-		this.company = company;
-	}
-
-
 
 	public abstract double calcularPrecio();
 

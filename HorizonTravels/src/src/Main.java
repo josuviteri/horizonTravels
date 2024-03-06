@@ -1,6 +1,7 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import objetos.*;
 
@@ -15,11 +16,21 @@ public class Main {
         Estacion estacionDestino = new Estacion("DES001", "Estación de destino", "Ciudad Destino", "País Destino");
 
         // Creación de compañía
-        Company company = new Company("COMP001", "Compañía de Ejemplo", "País de la Compañía");
+        
+        
+        Company company = new Company("COMP001", "Compañía de Ejemplo");
 
         // Creación de viaje
-        Viaje viaje = new Viaje("VIA001", System.currentTimeMillis(), estacionOrigen, estacionDestino, new VueloInter(50.0), 500.0, new ArrayList<>());
+        Viaje viaje = new Viaje("VIA001", System.currentTimeMillis(), estacionOrigen, estacionDestino, company, 500.0, new ArrayList<>());
+       
+        Medio vuelo = new VueloInter(30);
+        vuelo.setViaje(viaje);
+        company.setMedio(vuelo);
+        
 
+        
+        
+        List<Asiento> listaAsientos = new ArrayList<Asiento>();
         // Creación de asientos llenos
         Asiento asiento1 = new Asiento(viaje, "Josu");
         Asiento asiento2 = new Asiento(viaje, "Gotzon");
@@ -38,39 +49,47 @@ public class Main {
         Asiento asiento14 = new Asiento(viaje);
         
 
+        
         // Agregar asientos al viaje
-        viaje.getAsientos().add(asiento1);
-        viaje.getAsientos().add(asiento2);
-        viaje.getAsientos().add(asiento3);
-        viaje.getAsientos().add(asiento4);
-        viaje.getAsientos().add(asiento5);
-        viaje.getAsientos().add(asiento6);
-        viaje.getAsientos().add(asiento7);
-        viaje.getAsientos().add(asiento8);
-        viaje.getAsientos().add(asiento9);
-        viaje.getAsientos().add(asiento10);
-        viaje.getAsientos().add(asiento11);
-        viaje.getAsientos().add(asiento12);
-        viaje.getAsientos().add(asiento13);
-        viaje.getAsientos().add(asiento14);
+        listaAsientos.add(asiento1);
+        listaAsientos.add(asiento2);
+        listaAsientos.add(asiento3);
+        listaAsientos.add(asiento4);
+        listaAsientos.add(asiento5);
+        listaAsientos.add(asiento6);
+        listaAsientos.add(asiento7);
+        listaAsientos.add(asiento8);
+        listaAsientos.add(asiento9);
+        listaAsientos.add(asiento10);
+        listaAsientos.add(asiento11);
+        listaAsientos.add(asiento12);
+        listaAsientos.add(asiento13);
+        listaAsientos.add(asiento14);
 
         // Agregar el viaje a la lista de viajes de la compañía
-        company.getViajes().add(viaje);
+        viaje.setAsientos(listaAsientos);
+        
+        System.out.println(viaje.getCompany().getMedio().calcularPrecio());
+        
         
         // Imprimir información de ejemplo
-        System.out.println("Información del Viaje:");
-        System.out.println("Código: " + viaje.getCodigo());
-        System.out.println("Fecha: " + viaje.getFecha());
-        System.out.println("Compañía: " + company.getNombre());
-        System.out.println("Estación de Origen: " + viaje.getOrigen().getNombre());
-        System.out.println("Estación de Destino: " + viaje.getDestino().getNombre());
-        System.out.println("Precio Base: " + viaje.getPrecioBase());
-        System.out.println("Impuesto de "+ viaje.getMedio().getClass().getSimpleName() + " : " + ((VueloInter) viaje.getMedio()).getImpuestoInter());
-        System.out.println("Precio con Impuestos: "+ (viaje.getPrecioBase() + ((VueloInter) viaje.getMedio()).getImpuestoInter()) );
-        System.out.println("Medio de Transporte: " + viaje.getMedio().getClass().getSimpleName());
-        System.out.println("Cantidad Total de Asientos : " + viaje.getAsientos().size());
-        System.out.println("Asientos Libres: " + viaje.asientosLibres());
-        System.out.println("Asientos Ocupados: " + viaje.asientosOcupados());
+//        System.out.println("Información del Viaje:");
+//        System.out.println("Código: " + viaje.getCodigo());
+//        System.out.println("Fecha: " + viaje.getFecha());
+//        System.out.println("Compañía: " + company.getNombre());
+//        System.out.println("Estación de Origen: " + viaje.getOrigen().getNombre());
+//        System.out.println("Estación de Destino: " + viaje.getDestino().getNombre());
+//        System.out.println("Precio Base: " + viaje.getPrecioBase());
+//        System.out.println("Precio ");
+//        
+        
+//        System.out.println("Impuesto de "+ viaje.getMedio().getClass().getSimpleName() + " : " + ((VueloInter) viaje.getMedio()).getImpuestoInter());
+//        System.out.println("1 Precio con impuesto de  "+ viaje.getMedio().getClass().getSimpleName() + " : " + ((VueloInter) viaje.getMedio()).calcularPrecio());
+//        System.out.println("2 Precio con Impuestos: "+ (viaje.getPrecioBase() + ((VueloInter) viaje.getMedio()).getImpuestoInter()) );
+//        System.out.println("Medio de Transporte: " + viaje.getMedio().getClass().getSimpleName());
+//        System.out.println("Cantidad Total de Asientos : " + viaje.getAsientos().size());
+//        System.out.println("Asientos Libres: " + viaje.asientosLibres());
+//        System.out.println("Asientos Ocupados: " + viaje.asientosOcupados());
 	}
 
 }

@@ -1,33 +1,20 @@
 package objetos;
 
 public class TrenInter extends Tren{
-	 
-	private double impuestoInter;
-
-
-	 
 
 
 	public TrenInter(double impuestoInter) {
-		super();
-		this.impuestoInter = impuestoInter;
+		super(0, impuestoInter);
 	}
 
-	public double getImpuestoNacional() {
+	public double getImpuestoInter() {
 		return impuestoInter;
 	}
-
-	public void setImpuestoNacional(double impuestoInter) {
-		this.impuestoInter = impuestoInter;
-	}
-
-
-
 
 	 @Override
 	    public double calcularPrecio() {
 	        // Precio base + impuesto internacional
-	        return 500 + impuestoInter;
+	        return getViaje().getPrecioBase() + impuestoInter ;
 	    }
 
 }

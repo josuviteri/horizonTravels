@@ -8,11 +8,11 @@ public class Viaje {
 	protected Long fecha;
 	protected Estacion origen;
 	protected Estacion destino;
-	protected Medio medio;
+	protected Company company;
 	protected double precioBase;
 	protected List<Asiento> asientos;
 	
-	public Viaje(String codigo, Long fecha, Estacion origen, Estacion destino, Medio medio,
+	public Viaje(String codigo, Long fecha, Estacion origen, Estacion destino, Company company,
 			double precioBase, List<Asiento> asientos) {
 		super();
 		this.codigo = codigo;
@@ -20,7 +20,7 @@ public class Viaje {
 		this.origen = origen;
 		this.destino = destino;
 
-		this.medio = medio;
+		this.company = company;
 		this.precioBase = precioBase;
 		this.asientos = new ArrayList<>();
 	}
@@ -57,12 +57,12 @@ public class Viaje {
 		this.destino = destino;
 	}
 
-	public Medio getMedio() {
-		return medio;
+	public Company getCompany() {
+		return company;
 	}
 
-	public void setMedio(Medio medio) {
-		this.medio = medio;
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 
 	public double getPrecioBase() {

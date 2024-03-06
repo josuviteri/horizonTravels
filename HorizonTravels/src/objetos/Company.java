@@ -8,14 +8,21 @@ public class Company implements Serializable{
 	
 	private String codigo;
 	private String nombre;
-	private String pais;
-	private List<Viaje> viajes;
+	private Medio medio;
+	private ArrayList<String> listaViajes;
 	
-	public Company(String codigo, String nombre, String pais) {
+	public Company(String codigo, String nombre, Medio medio) {
 		this.codigo = codigo;
 		this.nombre = nombre;
-		this.pais = pais;
-		this.viajes = new ArrayList<>();
+		this.medio = medio;
+		this.setListaViajes(new ArrayList<String>());
+	}
+	
+	public Company(String codigo, String nombre) {
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.medio = null;
+		this.setListaViajes(new ArrayList<String>());
 	}
 
 	public String getCodigo() {
@@ -33,22 +40,22 @@ public class Company implements Serializable{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
 
-	public String getPais() {
-		return pais;
+	public Medio getMedio() {
+		return medio;
 	}
 
-	public void setPais(String pais) {
-		this.pais = pais;
+	public void setMedio(Medio medio) {
+		this.medio = medio;
 	}
 
-	public List<Viaje> getViajes() {
-		return viajes;
+	public ArrayList<String> getListaViajes() {
+		return listaViajes;
 	}
 
-	public void setViajes(List<Viaje> viajes) {
-		this.viajes = viajes;
+	public void setListaViajes(ArrayList<String> listaViajes) {
+		this.listaViajes = listaViajes;
 	}
-
 
 }

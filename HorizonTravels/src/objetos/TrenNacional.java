@@ -7,21 +7,17 @@ public class TrenNacional extends Tren{
 
 
 	public TrenNacional(double impuestoNacional) {
-		super();
-		this.impuestoNacional = impuestoNacional;
+		super(impuestoNacional, 0);
 	}
 
 	public double getImpuestoNacional() {
 		return impuestoNacional;
 	}
 
-	public void setImpuestoNacional(double impuestoNacional) {
-		this.impuestoNacional = impuestoNacional;
-	}
-
+	 
 	 @Override
 	    public double calcularPrecio() {
 	        // Precio base + impuesto internacional
-	        return 500 + impuestoNacional;
+	        return getViaje().getPrecioBase() + impuestoNacional;
 	    }
 }
