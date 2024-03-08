@@ -108,13 +108,13 @@ public class Main {
                 		System.out.println("okay 3.2");
 
                 	}else {
-                		System.out.println("Error invalido, introduce un valor valido.");
+                    	System.out.println("Error, introduce un valor valido.");
                 	}
             	}
             	
             	
             }else {
-            	System.out.println("Error invalido, introduce un valor valido.");
+            	System.out.println("Error, introduce un valor valido.");
             	
             }
         }
