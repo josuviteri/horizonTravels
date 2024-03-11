@@ -1,4 +1,4 @@
-name: Check Push User
+name: Check Pusher
 
 on:
   push:
@@ -6,17 +6,12 @@ on:
       - main
 
 jobs:
-  check-push-user:
+  check-pusher:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check push user
+      - name: Check pusher
+        if: github.actor != 'josuviteri'
         run: |
-          push_user=$(git log -1 --format='%an' $GITHUB_SHA)
-          if [ "$push_user" == "josuviteri" ]; then
-            echo "Push by user 'josuviteri'."
-            exit 0
-          else
-            echo "Push not by user 'josuviteri'."
-            exit 1
-          fi
+          echo "Error: Unauthorized push. Only josuviteri is allowed to push to this repository."
+          exit 1
