@@ -15,7 +15,7 @@ public class MainTest {
 	public void setUp() throws Exception {
 	}
 
-	//prueba
+	//prueba2
 
 	@Test
 	public void test() {
