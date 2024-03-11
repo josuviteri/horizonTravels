@@ -1,40 +1,25 @@
-name: CI-SFTP
+name: Check Commit Message
 
-# Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ master ]
-#  pull_request:
-#    branches: [ master ]
+    branches:
+      - main
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in paralle
 jobs:
-  # This workflow contains a single job called "SFTP"
-  deploy-via-sftp:
+  check-commit-message:
     runs-on: ubuntu-latest
+
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-          
-      - name: SFTP Deploy
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.1
-        with:
-          username: ${{ secrets.SERVER_USERNAME}}
-          server: ${{ secrets.SERVER_IP}}
-          port: 22 # default is 22
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-          
-          # will put all file under this path
-          local_path: ./* # default is ./*
-          # files will copy to under remote_path
-          remote_path: ${{ secrets.SERVER_PATH}}
-          
-          # sftp args
-          args: '-o ConnectTimeout=5'
-
-
+      - name: Check commit message
+        run: |
+          commit_message=$(git log --format=%B -n 1 $GITHUB_SHA)
+          if [[ "$commit_message" == *"main"* ]]; then
+            echo "Commit message contains 'main'."
+            exit 0
+          else
+            echo "Commit message does not contain 'main'."
+            exit 1
+          fi
