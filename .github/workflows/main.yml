@@ -1,4 +1,4 @@
-name: Check Commit Message
+name: Check Push User
 
 on:
   push:
@@ -6,20 +6,17 @@ on:
       - main
 
 jobs:
-  check-commit-message:
+  check-push-user:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Check commit message
+      - name: Check push user
         run: |
-          commit_message=$(git log --format=%B -n 1 $GITHUB_SHA)
-          if [[ "$commit_message" == *"main"* ]]; then
-            echo "Commit message contains 'main'."
+          push_user=$(git log -1 --format='%an' $GITHUB_SHA)
+          if [ "$push_user" == "josuviteri" ]; then
+            echo "Push by user 'josuviteri'."
             exit 0
           else
-            echo "Commit message does not contain 'main'."
+            echo "Push not by user 'josuviteri'."
             exit 1
           fi
