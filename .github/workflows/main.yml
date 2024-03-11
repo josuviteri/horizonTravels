@@ -1,0 +1,25 @@
+name: Check Commit Message
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-commit-message:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Check commit message
+        run: |
+          commit_message=$(git log --format=%B -n 1 $GITHUB_SHA)
+          if [[ "$commit_message" == *"main"* ]]; then
+            echo "Commit message contains 'main'."
+            exit 0
+          else
+            echo "Commit message does not contain 'main'."
+            exit 1
+          fi
