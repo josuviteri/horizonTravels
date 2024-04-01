@@ -79,24 +79,24 @@ public class Main {
         boolean correcto3 = false;
         
         while(correcto1 == false) {
-        	System.out.println("Selecciona una opcion: \n1. Cargar viajes\n2. Mostrar viajes\n3. Modificar viajes\n ");
+        	System.out.println("Selecciona una opcion: \n1. Cargar viajes\n2. Mostrar viajes\n3. Reservar viajes\n ");
             Integer seleccion1 = scanner.nextInt();
-            
+            //cargar viajes
         	if(seleccion1 == 1) {
             	correcto1 = true;
             	System.out.println("okay1");
 
-            	
+            //mostrar viajes
             }else if(seleccion1 == 2) {
             	correcto1 = true;
             	System.out.println("okay2");
 
-            	
+            //Reservar viajes	
             }else if (seleccion1 == 3) {
             	correcto1 = true;
             	
             	while(correcto3 == false) {
-            		System.out.println("Selecciona el tipo de modificacion: \n1. Anyadir viaje/s\n2. Eliminar viaje/s\n");
+            		System.out.println("Selecciona el tipo de accion de reserva: \n1. Reservar viaje/s\n2. Eliminar reserva/s\n");
                 	Integer seleccion3 = scanner.nextInt();
                 	
             		if(seleccion3 == 1) {

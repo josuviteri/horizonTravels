@@ -4,14 +4,18 @@ public class Asiento {
 	protected Viaje viaje;
     protected boolean disponibilidad;
     protected String pasajero;
+    protected Integer id;
 	
-    
+    protected static Integer ultimoId = 0;
+
   //constructor asiento vacio
     public Asiento(Viaje viaje) {
 		super();
 		this.viaje = viaje;
 		this.disponibilidad = true;
 		this.pasajero = null;
+        this.id = ++ultimoId;
+
 	}
 	
 //	constructor asiento ocupado
@@ -20,6 +24,7 @@ public class Asiento {
 		this.viaje = viaje;
 		this.disponibilidad = false;
 		this.pasajero = pasajero;
+        this.id = ++ultimoId; 
 	}
 	
 	public Viaje getViaje() {
@@ -40,6 +45,9 @@ public class Asiento {
 	public void setPasajero(String pasajero) {
 		this.pasajero = pasajero;
 	}
+    public Integer getId() {
+        return id;
+    }
 
     
     
