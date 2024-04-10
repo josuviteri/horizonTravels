@@ -2,7 +2,10 @@ package objetos;
 
 public abstract class Medio {
     private Viaje viaje;
-    protected double impuestoNacional;
+    protected String codigoMedio;
+
+
+	protected double impuestoNacional;
     protected double impuestoInter;
     
     public Medio(double impuestoNacional, double impuestoInter) {
@@ -24,6 +27,14 @@ public abstract class Medio {
 
 	public double getImpuestoInter() {
 		return impuestoInter;
+	}
+	
+    public String getCodigoMedio() {
+		return codigoMedio;
+	}
+
+	public void setCodigoMedio(String codigoMedio) {
+		this.codigoMedio = codigoMedio;
 	}
 
 	public abstract double calcularPrecio();

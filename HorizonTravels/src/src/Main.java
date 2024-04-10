@@ -17,16 +17,16 @@ public class Main {
         Estacion estacionDestino = new Estacion("DES001", "Estación de destino", "Ciudad Destino", "País Destino");
 
         // Creación de compañía
-        
+        Medio vuelo = new VueloInter(30);
         
         Company company = new Company("COMP001", "Compañía de Ejemplo");
-
+        company.setMedio(vuelo);
         // Creación de viaje
         Viaje viaje = new Viaje("VIA001", System.currentTimeMillis(), estacionOrigen, estacionDestino, company, 500.0, new ArrayList<>());
        
-        Medio vuelo = new VueloInter(30);
+      
         vuelo.setViaje(viaje);
-        company.setMedio(vuelo);
+ 
         
 
         
