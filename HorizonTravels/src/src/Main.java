@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import database.GestorDB;
 import objetos.*;
 
 public class Main {
@@ -69,58 +70,62 @@ public class Main {
 
         // Agregar el viaje a la lista de viajes de la compañía
         viaje.setAsientos(listaAsientos);
-        
-        Scanner scanner = new Scanner(System.in);
-        
-//        System.out.println(viaje.getCompany().getMedio().calcularPrecio());
-        
-        
-        boolean correcto1 = false;
-        boolean correcto3 = false;
-        
-        while(correcto1 == false) {
-        	System.out.println("Selecciona una opcion: \n1. Cargar viajes\n2. Mostrar viajes\n3. Reservar viajes\n ");
-            Integer seleccion1 = scanner.nextInt();
-            //cargar viajes
-        	if(seleccion1 == 1) {
-            	correcto1 = true;
-            	System.out.println("okay1");
 
-            //mostrar viajes
-            }else if(seleccion1 == 2) {
-            	correcto1 = true;
-            	System.out.println("okay2");
 
-            //Reservar viajes	
-            }else if (seleccion1 == 3) {
-            	correcto1 = true;
-            	
-            	while(correcto3 == false) {
-            		System.out.println("Selecciona el tipo de accion de reserva: \n1. Reservar viaje/s\n2. Eliminar reserva/s\n");
-                	Integer seleccion3 = scanner.nextInt();
-                	
-            		if(seleccion3 == 1) {
-            			correcto3 = true;
-                		System.out.println("okay 3.1");
-                		
-                	}else if (seleccion3 == 2) {
-                		correcto3 = true;
-                		System.out.println("okay 3.2");
-
-                	}else {
-                    	System.out.println("Error, introduce un valor valido.");
-                	}
-            	}
-            	
-            	
-            }else {
-            	System.out.println("Error, introduce un valor valido.");
-            	
-            }
-        }
         
         
         System.out.println("fin");
+//        Scanner scanner = new Scanner(System.in);
+//        
+////        System.out.println(viaje.getCompany().getMedio().calcularPrecio());
+//        
+//        
+//        boolean correcto1 = false;
+//        boolean correcto3 = false;
+//        
+//        while(correcto1 == false) {
+//        	System.out.println("Selecciona una opcion: \n1. Cargar viajes\n2. Mostrar viajes\n3. Reservar viajes\n ");
+//            Integer seleccion1 = scanner.nextInt();
+//            //cargar viajes
+//        	if(seleccion1 == 1) {
+//            	correcto1 = true;
+//            	System.out.println("okay1");
+//
+//            //mostrar viajes
+//            }else if(seleccion1 == 2) {
+//            	correcto1 = true;
+//            	System.out.println("okay2");
+//
+//            //Reservar viajes	
+//            }else if (seleccion1 == 3) {
+//            	correcto1 = true;
+//            	
+//            	while(correcto3 == false) {
+//            		System.out.println("Selecciona el tipo de accion de reserva: \n1. Reservar viaje/s\n2. Eliminar reserva/s\n");
+//                	Integer seleccion3 = scanner.nextInt();
+//                	
+//            		if(seleccion3 == 1) {
+//            			correcto3 = true;
+//                		System.out.println("okay 3.1");
+//                		
+//                	}else if (seleccion3 == 2) {
+//                		correcto3 = true;
+//                		System.out.println("okay 3.2");
+//
+//                	}else {
+//                    	System.out.println("Error, introduce un valor valido.");
+//                	}
+//            	}
+//            	
+//            	
+//            }else {
+//            	System.out.println("Error, introduce un valor valido.");
+//            	
+//            }
+//        }
+//        
+//        
+//        System.out.println("fin");
         // Imprimir información de ejemplo
 //        System.out.println("Información del Viaje:");
 //        System.out.println("Código: " + viaje.getCodigo());
