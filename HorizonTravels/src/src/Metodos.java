@@ -1,5 +1,7 @@
 package src;
 
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import database.GestorDB;
 import objetos.*;
@@ -68,8 +70,57 @@ public class Metodos {
 		        }
 	}
 	
+
+	
+	public static void eliminarViaje(Viaje viaje) {
+		
+
+		        
+		GestorDB.eliminarEstacion(viaje.getOrigen().getCodigo());
+		GestorDB.eliminarEstacion(viaje.getDestino().getCodigo());
+
+		Company company = viaje.getCompany();
+		GestorDB.eliminarCompany(viaje.getCompany().getCodigo());
+		
+		       
+		// Insertar el medio de transporte (si existe)
+		Medio medio = company.getMedio();
+		GestorDB.eliminarMedio(company.getMedio().getCodigoMedio());
+
+		GestorDB.eliminarViaje(viaje.getCodigo());
+
+		    // Insertar los asientos
+		    List<Asiento> asientos = viaje.getAsientos();
+		    for (Asiento asiento : asientos) {
+		    GestorDB.eliminarAsiento(asiento.getId(), asiento.getViaje().getCodigo());
+		        }
+		
+	}
+	
+	
+	public static void modificarViaje() {
+		//kperezalol
+	}
+	
+	public static void mostrarDatosViaje(Viaje viaje) {
+		GestorDB.mostrarDatosViaje(viaje.getCodigo());
+	}
+	
 	public static void cargarViajes() {
 		
 	}
 	
+    public static String LongAFecha(long fechaEnMilisegundos) {
+        // Crear un objeto Instant desde el valor en milisegundos
+        Instant instant = Instant.ofEpochMilli(fechaEnMilisegundos);
+        
+        // Crear un objeto LocalDateTime desde el Instant
+        LocalDateTime fecha = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        
+        // Formatear la fecha en una cadena legible
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String fechaFormateada = fecha.format(formatter);
+        
+        return fechaFormateada;
+    }
 }

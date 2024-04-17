@@ -1,6 +1,7 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,16 +15,16 @@ public class Main {
 		 // Creación de objetos de ejemplo
 
         // Creación de estaciones
-        Estacion estacionOrigen = new Estacion("ORI001", "Estación de origen", "Ciudad Origen", "País Origen");
-        Estacion estacionDestino = new Estacion("DES001", "Estación de destino", "Ciudad Destino", "País Destino");
+        Estacion estacionOrigen = new Estacion("BI480", "Derio", "Bilbo", "España");
+        Estacion estacionDestino = new Estacion("MA003", "Madrid", "Madrid", "España");
 
         // Creación de compañía
-        Medio vuelo = new VueloInter(30);
+        Medio vuelo = new VueloInter(50);
         
-        Company company = new Company("COMP001", "Compañía de Ejemplo");
+        Company company = new Company("COM001", "Rayanair");
         company.setMedio(vuelo);
         // Creación de viaje
-        Viaje viaje = new Viaje("VIA001", System.currentTimeMillis(), estacionOrigen, estacionDestino, company, 500.0, new ArrayList<>());
+        Viaje viaje = new Viaje("VIA002", System.currentTimeMillis(), estacionOrigen, estacionDestino, company, 800.0, new ArrayList<>());
        
       
         vuelo.setViaje(viaje);
@@ -51,7 +52,7 @@ public class Main {
         Asiento asiento14 = new Asiento(viaje);
         
 
-        
+
         // Agregar asientos al viaje
         listaAsientos.add(asiento1);
         listaAsientos.add(asiento2);
@@ -71,9 +72,15 @@ public class Main {
         // Agregar el viaje a la lista de viajes de la compañía
         viaje.setAsientos(listaAsientos);
 
+        
+        
+        //        System.out.println("Fecha: "+ viaje.getFecha());
+//        System.out.println(Metodos.LongAFecha(viaje.getFecha()));
 
-        
-        
+//        System.out.println(Metodos.LongAFecha(1739492400000L));
+        //Metodos.guardarViaje(viaje);
+        Metodos.mostrarDatosViaje(viaje);
+        //GestorDB.mostrarViajes();
         System.out.println("fin");
 //        Scanner scanner = new Scanner(System.in);
 //        
