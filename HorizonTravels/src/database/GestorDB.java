@@ -370,6 +370,7 @@ public class GestorDB {
 	                + "        	    codigo_medio TEXT PRIMARY KEY,\n"
 	                + "        	    impuesto INTEGER,\n"
 	                + "        	    codigo_viaje TEXT,\n"
+	                + "        	    tipo_medio INTEGER,\n"
 	                + "        	    FOREIGN KEY (codigo_viaje) REFERENCES Viaje(codigo_viaje)\n"
 	                + "        	)";
 
@@ -381,15 +382,16 @@ public class GestorDB {
 	        }
 	    }
 	    
-	    public static void insertarMedio(String codigo_medio, Integer impuesto, String codigo_viaje) {
+	    public static void insertarMedio(String codigo_medio, Integer impuesto, String codigo_viaje, Integer tipo_medio) {
 	       if(!existeMedio(codigo_medio)) {
-	    	   String sql = "INSERT INTO Medio(codigo_medio, impuesto, codigo_viaje) VALUES(?,?,?)";
+	    	   String sql = "INSERT INTO Medio(codigo_medio, impuesto, codigo_viaje, tipo_medio) VALUES(?,?,?,?)";
 
 		        try (Connection conn = ConexionDB.obtenerConexion();
 		             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 		            pstmt.setString(1, codigo_medio);
 		            pstmt.setInt(2, impuesto);
 		            pstmt.setString(3, codigo_viaje);
+		            pstmt.setInt(4, tipo_medio);
 		            pstmt.executeUpdate();
 		            System.out.println("Medio insertado correctamente.");
 		        } catch (SQLException e) {
@@ -400,7 +402,7 @@ public class GestorDB {
 	       }
 	    }
 
-	    public static void modificarMedio(String codigo_medio, int impuesto, String codigo_viaje) {
+	    public static void modificarMedio(String codigo_medio, int impuesto, String codigo_viaje, Integer tipo_medio) {
 	        if(existeMedio(codigo_medio)) {
 	        	String sql = "UPDATE Medio SET impuesto = ?, codigo_viaje = ? WHERE codigo_medio = ?";
 
@@ -409,6 +411,7 @@ public class GestorDB {
 		            pstmt.setInt(1, impuesto);
 		            pstmt.setString(2, codigo_viaje);
 		            pstmt.setString(3, codigo_medio);
+		            pstmt.setInt(4, tipo_medio);
 		            pstmt.executeUpdate();
 		            System.out.println("Medio modificado correctamente.");
 		        } catch (SQLException e) {
@@ -444,7 +447,7 @@ public class GestorDB {
 	             PreparedStatement pstmt = conn.prepareStatement(sql);
 	             ResultSet rs = pstmt.executeQuery()) {
 	            while (rs.next()) {
-	                System.out.println("Codigo del medio: " + rs.getString("codigo_medio") + "\tImpuesto: " + rs.getInt("impuesto"));
+	                System.out.println("Codigo del medio: " + rs.getString("codigo_medio") + "\tImpuesto: " + rs.getInt("impuesto") + "\tTipo: " + rs.getInt("tipo_medio"));
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -554,6 +557,26 @@ public class GestorDB {
 		        return false;
 		    }
 		}
+	 
+	 
+	 //solo para el proceso del desarrollo!!!
+	 public static void borrarContenidoTablas() {
+	        // Lista de nombres de tablas en tu base de datos
+	        String[] tablas = {"Viaje", "Asiento", "Company", "Medio", "Estacion"};
+	        
+	        // Recorremos todas las tablas y eliminamos su contenido
+	        for (String tabla : tablas) {
+	            String sql = "DELETE FROM " + tabla;
+	            
+	            try (Connection conn = ConexionDB.obtenerConexion();
+	                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	                pstmt.executeUpdate();
+	                System.out.println("Contenido de la tabla " + tabla + " borrado correctamente.");
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
 	 
 
 

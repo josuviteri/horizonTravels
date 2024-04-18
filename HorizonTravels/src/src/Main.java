@@ -79,8 +79,15 @@ public class Main {
 
 //        System.out.println(Metodos.LongAFecha(1739492400000L));
         //Metodos.guardarViaje(viaje);
-        Metodos.mostrarDatosViaje(viaje);
+       // Metodos.mostrarDatosViaje(viaje);
         //GestorDB.mostrarViajes();
+        Metodos.guardarCodigoViaje(viaje.getCodigo());
+        
+        
+        
+        
+        
+        
         System.out.println("fin");
 //        Scanner scanner = new Scanner(System.in);
 //        
