@@ -412,7 +412,7 @@ public class GestorDB {
 		            e.printStackTrace();
 		        }
 	        }else {
-		        System.out.println("La company ya existe. No se puede eliminar.");
+		        System.out.println("La company ya existe. No se puede insertar.");
 	        }
 	    }
 

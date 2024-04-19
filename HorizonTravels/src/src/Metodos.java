@@ -1,6 +1,8 @@
 package src;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.*;
@@ -198,15 +200,32 @@ public class Metodos {
     }
     
     public static void guardarCodigoViaje(String codigoViaje) {
-
-        try (FileWriter fw = new FileWriter(nombre_fichero, true); 
-             BufferedWriter bw = new BufferedWriter(fw)) {
-            bw.write(codigoViaje); 
-            bw.newLine(); 
-            System.out.println("Codigo de viaje: "+ codigoViaje + ", guardado correctamente.");
+    	if(!codigoYaExiste(codigoViaje)) {
+    		try (FileWriter fw = new FileWriter(nombre_fichero, true); 
+    	             BufferedWriter bw = new BufferedWriter(fw)) {
+    	            bw.write(codigoViaje); 
+    	            bw.newLine(); 
+    	            System.out.println("Codigo de viaje: "+ codigoViaje + ", guardado correctamente.");
+    	        } catch (IOException e) {
+    	            e.printStackTrace();
+    	        }
+    	}else {
+    		System.out.println("El codigo ya existe en el fichero de texto. No se puede insertar.");
+    	}
+    }
+    
+    private static boolean codigoYaExiste(String codigoViaje) {
+        try (BufferedReader br = new BufferedReader(new FileReader(nombre_fichero))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (linea.equals(codigoViaje)) {
+                    return true; 
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return false; 
     }
     
 }

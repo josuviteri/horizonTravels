@@ -72,11 +72,11 @@ public class Main {
 //        GestorDB.borrarContenidoTablas();
         
 //        GestorDB.mostrarTodosViajes();
-//        Metodos.guardarViaje(viaje);
+        Metodos.guardarViaje(viaje);
 //        
-        String codigo_viaje = viaje.getCodigo();
-        Viaje nuevoViaje = Metodos.recuperarViaje(codigo_viaje);
-        Metodos.mostrarDetallesViaje(nuevoViaje);
+//        String codigo_viaje = viaje.getCodigo();
+//        Viaje nuevoViaje = Metodos.recuperarViaje(codigo_viaje);
+//        Metodos.mostrarDetallesViaje(nuevoViaje);
 
         
         System.out.println("fin");
