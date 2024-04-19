@@ -23,8 +23,8 @@ public class Metodos {
 		GestorDB.insertarEstacion(destino.getCodigo(), destino.getNombre(), destino.getCiudad(), destino.getPais());
 
 		Company company = viaje.getCompany();
-		        
-		if(company.getMedio().getCodigoMedio() != null) {
+
+		if(company.getMedio().getCodigoMedio() == null) {
 			GestorDB.insertarCompany(company.getCodigo(), company.getNombre(), "");
 
 		}else {
@@ -127,6 +127,8 @@ public class Metodos {
 		Company company = GestorDB.recuperarCompany(codigo_comp);
 		
 		String codigo_medio = GestorDB.recuperarCodigoMedioDeCompany(codigo_comp);
+		System.out.println("hola");
+		System.out.println(codigo_medio);
 		Medio medio = GestorDB.recuperarMedio(codigo_medio);
 		company.setMedio(medio);
 		

@@ -461,7 +461,7 @@ public class GestorDB {
 	             PreparedStatement pstmt = conn.prepareStatement(sql);
 	             ResultSet rs = pstmt.executeQuery()) {
 	            while (rs.next()) {
-	                System.out.println("codigo de la company: " + rs.getString("codigo_comp") + "\tNombre: " + rs.getString("nombre_comp"));
+	                System.out.println("codigo de la company: " + rs.getString("codigo_comp") + "\tNombre: " + rs.getString("nombre_comp") + "\tCodigo del medio: " + rs.getString("codigo_medio"));
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -637,7 +637,7 @@ public class GestorDB {
 		        return false;
 		    }
 		}
-	 
+
 	 public static Medio recuperarMedio(String codigo_medio) {
 		 if(existeMedio(codigo_medio)) {
 			 String sql = "SELECT * FROM Medio WHERE codigo_medio = ?";

@@ -68,20 +68,16 @@ public class Main {
         viaje.setAsientos(listaAsientos);
         
         
-        Metodos.mostrarDetallesViaje(viaje);
+//        Metodos.mostrarDetallesViaje(viaje);
 //        GestorDB.borrarContenidoTablas();
         
 //        GestorDB.mostrarTodosViajes();
 //        Metodos.guardarViaje(viaje);
 //        
-//        String codigo_viaje = viaje.getCodigo();
-//        Viaje nuevoViaje = Metodos.recuperarViaje(codigo_viaje);
-//        Metodos.mostrarDetallesViaje(nuevoViaje);
-//        
-//        System.out.println(viaje.getCompany().getMedio().getCodigoMedio());
+        String codigo_viaje = viaje.getCodigo();
+        Viaje nuevoViaje = Metodos.recuperarViaje(codigo_viaje);
+        Metodos.mostrarDetallesViaje(nuevoViaje);
 
-        
-        
         
         System.out.println("fin");
 //        Scanner scanner = new Scanner(System.in);
