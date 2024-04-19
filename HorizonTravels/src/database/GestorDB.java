@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import objetos.*;
 import src.Metodos;
 
 public class GestorDB {
@@ -155,6 +156,59 @@ public class GestorDB {
         }
 	}
 	 
+	 public static String recuperarCodigoOrigenDeViaje(String codigo_viaje) {
+		 if(existeViaje(codigo_viaje)) {
+			 String sql = "SELECT codigo_origen FROM Viaje WHERE codigo_viaje = ?";
+
+			    try (Connection conn = ConexionDB.obtenerConexion();
+			         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			        pstmt.setString(1, codigo_viaje);
+			        try (ResultSet rs = pstmt.executeQuery()) {
+			            if (rs.next()) {
+			                return rs.getString("codigo_origen");
+			            } else {
+			                System.out.println("No se encontró ningún viaje con el código: " + codigo_viaje);
+			                return null;
+			            }
+			        }
+			    } catch (SQLException e) {
+			        e.printStackTrace();
+			        return null;
+			    }
+		 }
+		 return null;
+	 }
+	 
+	 public static String recuperarCodigoDestinoDeViaje(String codigo_viaje) {
+		 if(existeViaje(codigo_viaje)) {
+			 String sql = "SELECT codigo_destino FROM Viaje WHERE codigo_viaje = ?";
+
+			    try (Connection conn = ConexionDB.obtenerConexion();
+			         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			        pstmt.setString(1, codigo_viaje);
+			        try (ResultSet rs = pstmt.executeQuery()) {
+			            if (rs.next()) {
+			                return rs.getString("codigo_destino");
+			            } else {
+			                System.out.println("No se encontró ningún viaje con el código: " + codigo_viaje);
+			                return null;
+			            }
+			        }
+			    } catch (SQLException e) {
+			        e.printStackTrace();
+			        return null;
+			    }
+		 }
+		 return null;
+	 }
+	 
+//	 public static void Viaje recuperarViaje(String codigo_viaje) {
+//		 if(existeViaje(codigo_viaje)) {
+//			 
+//		 }
+//		 return null;
+//	 }
+	 
 	    public static void crearTablaAsiento() {
 	        String sql = "CREATE TABLE IF NOT EXISTS Asiento (\n"
 	                + "        	    asiento_id INTEGER,\n"
@@ -192,7 +246,7 @@ public class GestorDB {
 
 	    public static void modificarAsiento(int asiento_id, String nombre_pasajero, String codigo_viaje) {
 	        if(existeAsiento(asiento_id, codigo_viaje)) {
-	        	String sql = "UPDATE Asiento SET nombre_pasajero = ?, codigo_viaje = ? WHERE asiento_id = ?";
+	        	String sql = "UPDATE Asiento SET nombre_pasajero = ?, codigo_viaje = ? WHERE asiento_id = ?  AND codigo_viaje = ?";
 
 		        try (Connection conn = ConexionDB.obtenerConexion();
 		             PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -258,6 +312,31 @@ public class GestorDB {
 			    }
 			}
 	    
+		 public static Asiento recuperarAsiento(Integer asiento_id, String codigo_viaje, Viaje viaje) {
+			 if(existeAsiento(asiento_id, codigo_viaje)) {
+				 String sql = "SELECT * FROM Asiento WHERE asiento_id = ? AND codigo_viaje = ?";
+				 try (Connection conn = ConexionDB.obtenerConexion();
+				         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			            pstmt.setInt(1, asiento_id);
+			            pstmt.setString(2, codigo_viaje);
+			            try (ResultSet rs = pstmt.executeQuery()) {
+			                if (rs.next()) {
+			                    String nombre_pasajero = rs.getString("nombre_pasajero");
+			                    return new Asiento(viaje, nombre_pasajero);
+			                } else {
+			                    System.out.println("No se encontró ningun asiento con el id: " + asiento_id + ", del viaje: " + codigo_viaje);
+			                    return null;
+			                }
+			            }
+				 } catch (SQLException e) {
+					e.printStackTrace();
+					return null;
+				}
+			 
+			 
+			 }
+			 return null;
+		 }
 	    
 
 	    public static void crearTablaCompany() {
@@ -362,6 +441,31 @@ public class GestorDB {
 		        return false;
 		    }
 		}
+	 
+	 public static Company recuperarCompany(String codigo_comp) {
+		 if(existeCompany(codigo_comp)) {
+			 String sql = "SELECT * FROM Company WHERE codigo_comp = ?";
+
+			    try (Connection conn = ConexionDB.obtenerConexion();
+			         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			        pstmt.setString(1, codigo_comp);
+			        try (ResultSet rs = pstmt.executeQuery()) {
+			            if (rs.next()) {
+			                String nombre_comp = rs.getString("nombre_comp");
+			                return new Company(codigo_comp, nombre_comp);
+			            } else {
+			                System.out.println("No se encontró ninguna compañía con el código: " + codigo_comp);
+			                return null;
+			            }
+			        }
+			    } catch (SQLException e) {
+			        e.printStackTrace();
+			        return null;
+			    }
+		 }
+		return null;
+		 
+	 }
 	    
 	    
 
@@ -469,6 +573,43 @@ public class GestorDB {
 		        return false;
 		    }
 		}
+	 
+	 public static Medio recuperarMedio(String codigo_medio) {
+		 if(existeMedio(codigo_medio)) {
+			 String sql = "SELECT * FROM Medio WHERE codigo_medio = ?";
+
+			    try (Connection conn = ConexionDB.obtenerConexion();
+			         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			        pstmt.setString(1, codigo_medio);
+			        try (ResultSet rs = pstmt.executeQuery()) {
+			            if (rs.next()) {
+			                Integer impuesto = rs.getInt("impuesto");
+			                Integer tipo= rs.getInt("tipo_medio");
+			                if(tipo == 1) {
+			                	return new VueloInter(impuesto);
+			                }else if(tipo == 2) {
+			                	return new VueloNacional(impuesto);
+			                }else if(tipo == 3) {
+			                	return new TrenInter(impuesto);
+			                }else if(tipo == 4) {
+			                	return new TrenNacional(impuesto);
+			                }else if(tipo == 5) {
+			                	return new BarcoInter(impuesto);
+			                }else if(tipo == 6) {
+			                	return new BarcoNacional(impuesto);
+			                }
+			            }
+			        }
+			    } catch (SQLException e) {
+			        e.printStackTrace();
+			        return null;
+			    }
+		 }else {
+			 System.out.println("El medio con el código " + codigo_medio + " no existe.");
+			 return null;
+		 }
+		return null;
+	 }
 
 
 	    public static void insertarEstacion(String codigo_estacion, String nombre_estacion, String ciudad_estacion, String pais_estacion) {
@@ -528,7 +669,7 @@ public class GestorDB {
 	        }
 	    }
 	 
-	    public static void mostrarEstacion() {
+	    public static void mostrarEstaciones() {
 	        String sql = "SELECT * FROM Estacion";
 
 	        try (Connection conn = ConexionDB.obtenerConexion();
@@ -542,7 +683,32 @@ public class GestorDB {
 	        }
 	    }
 	    
-	 
+	 public static Estacion recuperarEstacion(String codigo_estacion) {
+		 if(existeEstacion(codigo_estacion)) {
+			 String sql = "SELECT * FROM Estacion WHERE codigo_estacion = ?";
+
+			    try (Connection conn = ConexionDB.obtenerConexion();
+			         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			        pstmt.setString(1, codigo_estacion);
+			        try (ResultSet rs = pstmt.executeQuery()) {
+			            if (rs.next()) {
+			                String nombre = rs.getString("nombre_estacion");
+			                String ciudad = rs.getString("ciudad_estacion");
+			                String pais = rs.getString("pais_estacion");
+			                return new Estacion(codigo_estacion, nombre, ciudad, pais);
+			            } else {
+			                System.out.println("No se encontró ninguna estación con el código: " + codigo_estacion);
+			                return null;
+			            }
+			        }
+			    } catch (SQLException e) {
+			        e.printStackTrace();
+			        return null;
+			    }
+		 }
+		return null;
+		 
+	 }
 	 
 	 private static boolean existeEstacion(String codigo_estacion) {
 		    String sql = "SELECT * FROM Estacion WHERE codigo_estacion = ?";

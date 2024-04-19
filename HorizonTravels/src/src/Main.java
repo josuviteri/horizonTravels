@@ -72,7 +72,7 @@ public class Main {
         // Agregar el viaje a la lista de viajes de la compañía
         viaje.setAsientos(listaAsientos);
 
-        
+        Metodos.guardarViaje(viaje);
         
         //        System.out.println("Fecha: "+ viaje.getFecha());
 //        System.out.println(Metodos.LongAFecha(viaje.getFecha()));
@@ -81,7 +81,7 @@ public class Main {
         //Metodos.guardarViaje(viaje);
        // Metodos.mostrarDatosViaje(viaje);
         //GestorDB.mostrarViajes();
-        Metodos.guardarCodigoViaje(viaje.getCodigo());
+        //Metodos.guardarCodigoViaje(viaje.getCodigo());
         
         
         

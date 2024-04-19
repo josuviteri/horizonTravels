@@ -74,7 +74,7 @@ public class Metodos {
 		        }
 		    
 			//al guardar un viaje se tiene que guardar el codigo del viaje en un .txt
-			String codigoViaje = viaje.getCodigo();
+			guardarCodigoViaje(viaje.getCodigo());
 	}
 	
 
@@ -107,23 +107,32 @@ public class Metodos {
 		//kperezalol
 	}
 	
-	public static void mostrarDatosViaje(Viaje viaje) {
-		GestorDB.mostrarDatosViaje(viaje.getCodigo());
-	}
+//	public static void mostrarDatosViaje(Viaje viaje) {
+//		GestorDB.mostrarDatosViaje(viaje.getCodigo());
+//	}
 	
 	
-	public static void cargarViaje(String codigo_viaje) {
+	public static void recuperarViaje(String codigo_viaje) {
+		GestorDB.mostrarDatosViaje(codigo_viaje);
 		//sacar Estacion de origen y destino 
+		String codigo_origen = GestorDB.recuperarCodigoOrigenDeViaje(codigo_viaje);
+		String codigo_destino = GestorDB.recuperarCodigoDestinoDeViaje(codigo_viaje);
+		Estacion origen = GestorDB.recuperarEstacion(codigo_origen);
+		Estacion destino = GestorDB.recuperarEstacion(codigo_destino);
 		//sacar company
+		//recuperar codigoasiento de codigoviaje
+//		Company company = GestorDB.recuperarCompany(codigo_destino)
 		//sacar objeto medio del company
 		//crear objeto viaje
 		//sacar asientos
+		//recuperarViaje(); Integer asiento_id, String codigo_viaje, Viaje viaje
 		//setear asientos del viaje
 	}
 	
 	
 	//todos
 	public static void cargarTodosViajes() {
+		//iterar con cargarViaje() todas las lineas del .txt
 		
 	}
 	
