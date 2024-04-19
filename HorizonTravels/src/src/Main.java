@@ -43,14 +43,9 @@ public class Main {
         Asiento asiento6 = new Asiento(viaje, "Clara");
         Asiento asiento7 = new Asiento(viaje, "Seta");
         Asiento asiento8 = new Asiento(viaje, "Guadi");
+        Asiento asiento9 = new Asiento(viaje, "Guadi");
+        Asiento asiento10 = new Asiento(viaje, "Guadi");
         //asientos vacios
-        Asiento asiento9 = new Asiento(viaje);
-        Asiento asiento10 = new Asiento(viaje);
-        Asiento asiento11 = new Asiento(viaje);
-        Asiento asiento12 = new Asiento(viaje);
-        Asiento asiento13 = new Asiento(viaje);
-        Asiento asiento14 = new Asiento(viaje);
-        
 
 
         // Agregar asientos al viaje
@@ -64,25 +59,24 @@ public class Main {
         listaAsientos.add(asiento8);
         listaAsientos.add(asiento9);
         listaAsientos.add(asiento10);
-        listaAsientos.add(asiento11);
-        listaAsientos.add(asiento12);
-        listaAsientos.add(asiento13);
-        listaAsientos.add(asiento14);
+        
+        for (int i = 0; i < 10; i++) {
+            listaAsientos.add(new Asiento(viaje));
+        }
 
         // Agregar el viaje a la lista de viajes de la compañía
         viaje.setAsientos(listaAsientos);
-
-        Metodos.guardarViaje(viaje);
+//        Metodos.guardarViaje(viaje);
         
         //        System.out.println("Fecha: "+ viaje.getFecha());
 //        System.out.println(Metodos.LongAFecha(viaje.getFecha()));
 
 //        System.out.println(Metodos.LongAFecha(1739492400000L));
         //Metodos.guardarViaje(viaje);
-       // Metodos.mostrarDatosViaje(viaje);
-        //GestorDB.mostrarViajes();
+//       Metodos.most
+//        Metodos.guardarViaje(viaje);
+        GestorDB.mostrarViajes();
         //Metodos.guardarCodigoViaje(viaje.getCodigo());
-        
         
         
         

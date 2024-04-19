@@ -202,12 +202,54 @@ public class GestorDB {
 		 return null;
 	 }
 	 
-//	 public static void Viaje recuperarViaje(String codigo_viaje) {
-//		 if(existeViaje(codigo_viaje)) {
-//			 
-//		 }
-//		 return null;
-//	 }
+	 
+	 public static Long recuperarFechaDeViaje(String codigo_viaje) {
+		 if(existeViaje(codigo_viaje)) {
+			 String sql = "SELECT fecha FROM Viaje WHERE codigo_viaje = ?";
+
+			    try (Connection conn = ConexionDB.obtenerConexion();
+			         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			        pstmt.setString(1, codigo_viaje);
+			        try (ResultSet rs = pstmt.executeQuery()) {
+			            if (rs.next()) {
+			                return rs.getLong("fecha");
+			            } else {
+			                System.out.println("No se encontró ningún viaje con el código: " + codigo_viaje);
+			                return null;
+			            }
+			        }
+			    } catch (SQLException e) {
+			        e.printStackTrace();
+			        return null;
+			    }
+		 }
+		 return null;
+	 }
+	 
+	 
+	 public static Integer recuperarPrecioDeViaje(String codigo_viaje) {
+		 if(existeViaje(codigo_viaje)) {
+			 String sql = "SELECT precioBase FROM Viaje WHERE codigo_viaje = ?";
+
+			    try (Connection conn = ConexionDB.obtenerConexion();
+			         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			        pstmt.setString(1, codigo_viaje);
+			        try (ResultSet rs = pstmt.executeQuery()) {
+			            if (rs.next()) {
+			                return rs.getInt("precioBase");
+			            } else {
+			                System.out.println("No se encontró ningún viaje con el código: " + codigo_viaje);
+			                return null;
+			            }
+			        }
+			    } catch (SQLException e) {
+			        e.printStackTrace();
+			        return null;
+			    }
+		 }
+		 return null;
+	 }
+	 
 	 
 	    public static void crearTablaAsiento() {
 	        String sql = "CREATE TABLE IF NOT EXISTS Asiento (\n"
@@ -467,6 +509,28 @@ public class GestorDB {
 		 
 	 }
 	    
+	 public static String recuperarCodigoCompDeViaje(String codigo_viaje) {
+		 if(existeViaje(codigo_viaje)) {
+			 String sql = "SELECT codigo_comp FROM Viaje WHERE codigo_viaje = ?";
+
+			    try (Connection conn = ConexionDB.obtenerConexion();
+			         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			        pstmt.setString(1, codigo_viaje);
+			        try (ResultSet rs = pstmt.executeQuery()) {
+			            if (rs.next()) {
+			                return rs.getString("codigo_comp");
+			            } else {
+			                System.out.println("No se encontró ningún viaje con el código: " + codigo_viaje);
+			                return null;
+			            }
+			        }
+			    } catch (SQLException e) {
+			        e.printStackTrace();
+			        return null;
+			    }
+		 }
+		 return null;
+	 }
 	    
 
 	    public static void crearTablaMedio() {
@@ -609,6 +673,30 @@ public class GestorDB {
 			 return null;
 		 }
 		return null;
+	 }
+	 
+	 
+	 public static String recuperarCodigoMedioDeCompany(String codigo_comp) {
+		 if(existeCompany(codigo_comp)) {
+			 String sql = "SELECT codigo_medio FROM Company WHERE codigo_comp = ?";
+
+			    try (Connection conn = ConexionDB.obtenerConexion();
+			         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			        pstmt.setString(1, codigo_comp);
+			        try (ResultSet rs = pstmt.executeQuery()) {
+			            if (rs.next()) {
+			                return rs.getString("codigo_medio");
+			            } else {
+			                System.out.println("No se encontró ningún viaje con el código: " + codigo_comp);
+			                return null;
+			            }
+			        }
+			    } catch (SQLException e) {
+			        e.printStackTrace();
+			        return null;
+			    }
+		 }
+		 return null;
 	 }
 
 

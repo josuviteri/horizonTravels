@@ -5,6 +5,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import database.GestorDB;
 import objetos.*;
@@ -112,8 +114,8 @@ public class Metodos {
 //	}
 	
 	
-	public static void recuperarViaje(String codigo_viaje) {
-		GestorDB.mostrarDatosViaje(codigo_viaje);
+	public static Viaje recuperarViaje(String codigo_viaje) {
+//		GestorDB.mostrarDatosViaje(codigo_viaje);
 		//sacar Estacion de origen y destino 
 		String codigo_origen = GestorDB.recuperarCodigoOrigenDeViaje(codigo_viaje);
 		String codigo_destino = GestorDB.recuperarCodigoDestinoDeViaje(codigo_viaje);
@@ -121,12 +123,30 @@ public class Metodos {
 		Estacion destino = GestorDB.recuperarEstacion(codigo_destino);
 		//sacar company
 		//recuperar codigoasiento de codigoviaje
-//		Company company = GestorDB.recuperarCompany(codigo_destino)
+		String codigo_comp = GestorDB.recuperarCodigoCompDeViaje(codigo_viaje);
+		Company company = GestorDB.recuperarCompany(codigo_comp);
+		
+		String codigo_medio = GestorDB.recuperarCodigoMedioDeCompany(codigo_comp);
+		Medio medio = GestorDB.recuperarMedio(codigo_medio);
+		company.setMedio(medio);
+		
+		Long fecha = GestorDB.recuperarFechaDeViaje(codigo_viaje);
+		Integer precioBase = GestorDB.recuperarPrecioDeViaje(codigo_viaje);
 		//sacar objeto medio del company
 		//crear objeto viaje
+		Viaje viaje = new Viaje(codigo_viaje, fecha, origen, destino, company, precioBase, new ArrayList<>());
 		//sacar asientos
-		//recuperarViaje(); Integer asiento_id, String codigo_viaje, Viaje viaje
-		//setear asientos del viaje
+		medio.setViaje(viaje);
+		
+        List<Asiento> listaAsientos = new ArrayList<Asiento>();
+        
+        //recuperar todos los 20 asientos llenos y vacios del vuelo
+        for(Integer i = 0; i < 20; i++) {
+        	listaAsientos.add(GestorDB.recuperarAsiento(i, codigo_viaje, viaje));
+        }
+        viaje.setAsientos(listaAsientos);
+        
+		return viaje;
 	}
 	
 	
