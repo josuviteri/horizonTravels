@@ -4,8 +4,8 @@ public class VueloInter extends Vuelo{
 
 
 
-	public VueloInter(double impuestoInter) {
-		super(0, impuestoInter);
+	public VueloInter(double impuestoInter, String codigoMedio) {
+		super(0, impuestoInter, codigoMedio);
 	}
 
 	public double getImpuestoInter() {

@@ -3,8 +3,8 @@ package objetos;
 public class BarcoInter extends Barco{
 
 
-	public BarcoInter(double impuestoInter) {
-		super(0, impuestoInter);
+	public BarcoInter(double impuestoInter, String codigoMedio) {
+		super(0, impuestoInter, codigoMedio);
 	}
 
 	public double getImpuestoInter() {

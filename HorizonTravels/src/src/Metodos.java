@@ -136,7 +136,8 @@ public class Metodos {
 		//crear objeto viaje
 		Viaje viaje = new Viaje(codigo_viaje, fecha, origen, destino, company, precioBase, new ArrayList<>());
 		//sacar asientos
-		medio.setViaje(viaje);
+		//no recupera el medios
+//		medio.setViaje(viaje);
 		
         List<Asiento> listaAsientos = new ArrayList<Asiento>();
         
@@ -147,6 +148,30 @@ public class Metodos {
         viaje.setAsientos(listaAsientos);
         
 		return viaje;
+	}
+	
+	
+	public static void mostrarDetallesViaje(Viaje viaje) {
+        System.out.println("Codigo del viaje: " + viaje.getCodigo() + 
+                           "\nFecha: " + Metodos.LongAFecha(viaje.getFecha()) + 
+                           "\nCodigo estacion origen: " + viaje.getOrigen().getCodigo() + 
+                           "\nCodigo estacion destino: " + viaje.getDestino().getCodigo() + 
+                           "\nCodigo de la compañía: " + viaje.getCompany().getCodigo() + 
+                           "\nPrecio del viaje: " + viaje.getPrecioBase());
+	Medio medio = viaje.getCompany().getMedio();
+	if (medio instanceof VueloInter) {
+		System.out.println("Tipo de Medio: Vuelo Internacional");
+    } else if (medio instanceof VueloNacional) {
+		System.out.println("Tipo de Medio: Vuelo Nacional");
+    } else if (medio instanceof TrenInter) {
+		System.out.println("Tipo de Medio: Tren Internacional");
+    } else if (medio instanceof TrenNacional) {
+		System.out.println("Tipo de Medio: Tren Nacional");
+    } else if (medio instanceof BarcoInter) {
+		System.out.println("Tipo de Medio: Barco Internacional");
+    } else if (medio instanceof BarcoNacional) {
+		System.out.println("Tipo de Medio: Barco Nacional");
+    }
 	}
 	
 	

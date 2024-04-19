@@ -97,14 +97,14 @@ public class GestorDB {
 	 }  
 	 
 	 
-	 public static void mostrarViajes() {
+	 public static void mostrarTodosViajes() {
 	        String sql = "SELECT * FROM Viaje";
 
 	        try (Connection conn = ConexionDB.obtenerConexion();
 	             PreparedStatement pstmt = conn.prepareStatement(sql);
 	             ResultSet rs = pstmt.executeQuery()) {
 	            while (rs.next()) {
-	                System.out.println("codigo del viaje: " + rs.getString("codigo_viaje") + "\tFecha: " + rs.getString("fecha"));
+	                System.out.println("Codigo del viaje: " + rs.getString("codigo_viaje") + "\nFecha: " + Metodos.LongAFecha(rs.getLong("fecha")) + "\nCodigo estacion origen: " + rs.getString("codigo_origen") + "\nCodigo estacion destino: " + rs.getString("codigo_destino") + "\nCodigo de la company: " + rs.getString("codigo_comp") + "\nPrecio del viaje: " + rs.getString("precioBase"));
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -650,17 +650,17 @@ public class GestorDB {
 			                Integer impuesto = rs.getInt("impuesto");
 			                Integer tipo= rs.getInt("tipo_medio");
 			                if(tipo == 1) {
-			                	return new VueloInter(impuesto);
+			                	return new VueloInter(impuesto, codigo_medio);
 			                }else if(tipo == 2) {
-			                	return new VueloNacional(impuesto);
+			                	return new VueloNacional(impuesto, codigo_medio);
 			                }else if(tipo == 3) {
-			                	return new TrenInter(impuesto);
+			                	return new TrenInter(impuesto, codigo_medio);
 			                }else if(tipo == 4) {
-			                	return new TrenNacional(impuesto);
+			                	return new TrenNacional(impuesto, codigo_medio);
 			                }else if(tipo == 5) {
-			                	return new BarcoInter(impuesto);
+			                	return new BarcoInter(impuesto, codigo_medio);
 			                }else if(tipo == 6) {
-			                	return new BarcoNacional(impuesto);
+			                	return new BarcoNacional(impuesto, codigo_medio);
 			                }
 			            }
 			        }

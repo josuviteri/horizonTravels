@@ -7,8 +7,8 @@ public abstract class Barco extends Medio{
 
 
 
-	public Barco(double impuestoNacional, double impuestoInter) {
-		super(impuestoNacional, impuestoInter);
+	public Barco(double impuestoNacional, double impuestoInter, String codigoMedio) {
+		super(impuestoNacional, impuestoInter, codigoMedio);
 	}
 
 	public abstract double calcularPrecio();

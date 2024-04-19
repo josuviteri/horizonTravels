@@ -19,7 +19,7 @@ public class Main {
         Estacion estacionDestino = new Estacion("MA003", "Madrid", "Madrid", "España");
 
         // Creación de compañía
-        Medio vuelo = new VueloInter(50);
+        Medio vuelo = new VueloInter(50, "Medio01");
         
         Company company = new Company("COM001", "Rayanair");
         company.setMedio(vuelo);
@@ -66,19 +66,20 @@ public class Main {
 
         // Agregar el viaje a la lista de viajes de la compañía
         viaje.setAsientos(listaAsientos);
-//        Metodos.guardarViaje(viaje);
         
-        //        System.out.println("Fecha: "+ viaje.getFecha());
-//        System.out.println(Metodos.LongAFecha(viaje.getFecha()));
+        
+        Metodos.mostrarDetallesViaje(viaje);
+//        GestorDB.borrarContenidoTablas();
+        
+//        GestorDB.mostrarTodosViajes();
+//        Metodos.guardarViaje(viaje);
+//        
+//        String codigo_viaje = viaje.getCodigo();
+//        Viaje nuevoViaje = Metodos.recuperarViaje(codigo_viaje);
+//        Metodos.mostrarDetallesViaje(nuevoViaje);
+//        
+//        System.out.println(viaje.getCompany().getMedio().getCodigoMedio());
 
-//        System.out.println(Metodos.LongAFecha(1739492400000L));
-        //Metodos.guardarViaje(viaje);
-//       Metodos.most
-//        Metodos.guardarViaje(viaje);
-        GestorDB.mostrarViajes();
-        //Metodos.guardarCodigoViaje(viaje.getCodigo());
-        
-        
         
         
         

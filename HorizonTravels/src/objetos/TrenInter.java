@@ -3,8 +3,8 @@ package objetos;
 public class TrenInter extends Tren{
 
 
-	public TrenInter(double impuestoInter) {
-		super(0, impuestoInter);
+	public TrenInter(double impuestoInter, String codigoMedio) {
+		super(0, impuestoInter, codigoMedio);
 	}
 
 	public double getImpuestoInter() {

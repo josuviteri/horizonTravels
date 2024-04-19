@@ -3,8 +3,8 @@ package objetos;
 public class VueloNacional extends Vuelo{
 
 	
-	public VueloNacional(double impuestoNacional) {
-		super(impuestoNacional, 0);
+	public VueloNacional(double impuestoNacional, String codigoMedio) {
+		super(impuestoNacional, 0, codigoMedio);
 	}
 	
 	public double getImpuestoNacional() {

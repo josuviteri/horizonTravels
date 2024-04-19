@@ -8,9 +8,10 @@ public abstract class Medio {
 	protected double impuestoNacional;
     protected double impuestoInter;
     
-    public Medio(double impuestoNacional, double impuestoInter) {
+    public Medio(double impuestoNacional, double impuestoInter, String codigoMedio) {
         this.impuestoNacional = impuestoNacional;
 		this.impuestoInter = impuestoInter;
+		this.codigoMedio = codigoMedio;
     }
 
 	public Viaje getViaje() {
