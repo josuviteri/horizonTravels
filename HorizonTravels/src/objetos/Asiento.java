@@ -34,12 +34,7 @@ public class Asiento {
 	public void setViaje(Viaje viaje) {
 		this.viaje = viaje;
 	}
-	public boolean isDisponibilidad() {
-		return disponibilidad;
-	}
-	public void setDisponibilidad(boolean disponibilidad) {
-		this.disponibilidad = disponibilidad;
-	}
+
 	public String getPasajero() {
 		return pasajero;
 	}

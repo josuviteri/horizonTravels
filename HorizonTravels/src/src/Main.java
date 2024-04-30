@@ -12,60 +12,88 @@ public class Main {
 
 	public static void main(String[] args) {
 
-        // Creación de estaciones
-        Estacion estacionOrigen = new Estacion("BI480", "Derio", "Bilbo", "España");
-        Estacion estacionDestino = new Estacion("MA003", "Madrid", "Madrid", "España");
+		 Estacion estacionOrigen = new Estacion("BI480", "Derio", "Bilbo", "España");
+	        Estacion estacionDestino1 = new Estacion("MA003", "Madrid", "Madrid", "España");
+	        Estacion estacionDestino2 = new Estacion("NY001", "New York", "New York", "EEUU");
+	        Estacion estacionDestino3 = new Estacion("TK420", "Tokyo", "Tokyo", "Japón");
 
-        // Creación de compañía
-        Medio vuelo = new VueloInter(50, "Medio01");
-        
-        Company company = new Company("COM001", "Rayanair");
-        company.setMedio(vuelo);
-        // Creación de viaje
-        Viaje viaje = new Viaje("VIA002", System.currentTimeMillis(), estacionOrigen, estacionDestino, company, 800.0, new ArrayList<>());
-           
-        vuelo.setViaje(viaje);
- 
-        List<Asiento> listaAsientos = new ArrayList<Asiento>();
-        // Creación de asientos llenos
-        Asiento asiento1 = new Asiento(viaje, "Josu");
-        Asiento asiento2 = new Asiento(viaje, "Gotzon");
-        Asiento asiento3 = new Asiento(viaje, "Giovanni");
-        Asiento asiento4 = new Asiento(viaje, "Asier");
-        Asiento asiento5 = new Asiento(viaje, "Aitor");
-        Asiento asiento6 = new Asiento(viaje, "Clara");
-        Asiento asiento7 = new Asiento(viaje, "Seta");
-        Asiento asiento8 = new Asiento(viaje, "Fabi");
-        Asiento asiento9 = new Asiento(viaje, "Guadi");
-        Asiento asiento10 = new Asiento(viaje, "Llerai");
-        //asientos vacios
+	        // Creación de compañía
+	        Medio vueloNacional = new VueloNacional(20, "MedioNacional");
+	        Medio vueloInternacional1 = new VueloInter(50, "MedioInternacional");
+	        Medio vueloInternacional2 = new VueloInter(90, "MedioInternacional");
+	        
+	        Company company1 = new Company("COM001", "Rayanair");
+	        Company company2 = new Company("COC324", "Cocompany");
+	        Company company3 = new Company("LA024", "LA420");
+	        company1.setMedio(vueloNacional);
 
+	        // Creación de viaje nacional
+	        Viaje viajeNacional = new Viaje("VIA001", System.currentTimeMillis(), estacionOrigen, estacionDestino1, company1, 200.0, new ArrayList<>());
+	        vueloNacional.setViaje(viajeNacional);
 
-        // Agregar asientos al viaje
-        listaAsientos.add(asiento1);
-        listaAsientos.add(asiento2);
-        listaAsientos.add(asiento3);
-        listaAsientos.add(asiento4);
-        listaAsientos.add(asiento5);
-        listaAsientos.add(asiento6);
-        listaAsientos.add(asiento7);
-        listaAsientos.add(asiento8);
-        listaAsientos.add(asiento9);
-        listaAsientos.add(asiento10);
-        
-        for (int i = 0; i < 10; i++) {
-            listaAsientos.add(new Asiento(viaje));
-        }
+	        // Creación de pasajeros
+	        List<Asiento> listaAsientosNacional = new ArrayList<>();
+	        listaAsientosNacional.add(new Asiento(viajeNacional, "Josu"));
+	        listaAsientosNacional.add(new Asiento(viajeNacional, "Gotzon"));
+	        listaAsientosNacional.add(new Asiento(viajeNacional, "Giovanni"));
+	        listaAsientosNacional.add(new Asiento(viajeNacional, ""));
+	        listaAsientosNacional.add(new Asiento(viajeNacional, "Aitor"));
+	        listaAsientosNacional.add(new Asiento(viajeNacional, "Clara"));
+	        listaAsientosNacional.add(new Asiento(viajeNacional, ""));
+	        listaAsientosNacional.add(new Asiento(viajeNacional, "Fabi"));
+	        listaAsientosNacional.add(new Asiento(viajeNacional, ""));
+	        listaAsientosNacional.add(new Asiento(viajeNacional, "Llerai"));
 
-        // Agregar el viaje a la lista de viajes de la compañía
-        viaje.setAsientos(listaAsientos);
+	        viajeNacional.setAsientos(listaAsientosNacional);
+
+	        // Creación de viaje internacional
+	        company2.setMedio(vueloInternacional1);
+	        Viaje viajeInternacional1 = new Viaje("VIA002", System.currentTimeMillis(), estacionOrigen, estacionDestino2, company2, 800.0, new ArrayList<>());
+	        vueloInternacional1.setViaje(viajeInternacional1);
+
+	        // Creación de pasajeros
+	        List<Asiento> listaAsientosInternacional1 = new ArrayList<>();
+	        listaAsientosInternacional1.add(new Asiento(viajeInternacional1, "Alice"));
+	        listaAsientosInternacional1.add(new Asiento(viajeInternacional1, "Bob"));
+	        listaAsientosInternacional1.add(new Asiento(viajeInternacional1, ""));
+	        listaAsientosInternacional1.add(new Asiento(viajeInternacional1, "Dave"));
+	        listaAsientosInternacional1.add(new Asiento(viajeInternacional1, "Eva"));
+	        listaAsientosInternacional1.add(new Asiento(viajeInternacional1, ""));
+	        listaAsientosInternacional1.add(new Asiento(viajeInternacional1, "Hannah"));
+	        listaAsientosInternacional1.add(new Asiento(viajeInternacional1, ""));
+	        listaAsientosInternacional1.add(new Asiento(viajeInternacional1, "Mike"));
+	        listaAsientosInternacional1.add(new Asiento(viajeInternacional1, "Sophia"));
+
+	        viajeInternacional1.setAsientos(listaAsientosInternacional1);
+
+	        // Creación de otro viaje internacional
+	        company3.setMedio(vueloInternacional2);
+	        Viaje viajeInternacional2 = new Viaje("VIA003", System.currentTimeMillis(), estacionOrigen, estacionDestino3, company3, 1200.0, new ArrayList<>());
+	        vueloInternacional2.setViaje(viajeInternacional2);
+
+	        // Creación de pasajeros
+	        List<Asiento> listaAsientosInternacional2 = new ArrayList<>();
+	        listaAsientosInternacional2.add(new Asiento(viajeInternacional2, "Nobu"));
+	        listaAsientosInternacional2.add(new Asiento(viajeInternacional2, ""));
+	        listaAsientosInternacional2.add(new Asiento(viajeInternacional2, "Kaito"));
+	        listaAsientosInternacional2.add(new Asiento(viajeInternacional2, "Akira"));
+	        listaAsientosInternacional2.add(new Asiento(viajeInternacional2, "Yuki"));
+	        listaAsientosInternacional2.add(new Asiento(viajeInternacional2, ""));
+	        listaAsientosInternacional2.add(new Asiento(viajeInternacional2, "Yui"));
+	        listaAsientosInternacional2.add(new Asiento(viajeInternacional2, "Goku"));
+	        listaAsientosInternacional2.add(new Asiento(viajeInternacional2, ""));
+	        listaAsientosInternacional2.add(new Asiento(viajeInternacional2, "Haruka"));
+
+	        viajeInternacional2.setAsientos(listaAsientosInternacional2);
         
         
 //        Metodos.mostrarDetallesViaje(viaje);
 //        GestorDB.borrarContenidoTablas();
         
         GestorDB.mostrarTodosViajes();
-//        Metodos.guardarViaje(viaje);
+//        Metodos.guardarViaje(viajeNacional);
+//        Metodos.guardarViaje(viajeInternacional1);
+//        Metodos.guardarViaje(viajeInternacional2);
 //        
 //        Metodos.eliminarViaje(viaje);
 //        String codigo_viaje = viaje.getCodigo();

@@ -81,20 +81,7 @@ public class Viaje {
 		this.asientos = asientos;
 	}
 	
-	public int asientosLibres() {
-		Integer i = 0;
-		for (Asiento asiento : asientos) {
-			if(asiento.disponibilidad) {
-				i += 1;
-			}
-		}
-		return i;	
-	}
-	
-	public int asientosOcupados() {
-		Integer i = asientos.size() - asientosLibres();
-		return i;	
-	}
+
 
 	
 }
