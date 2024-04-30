@@ -2,7 +2,6 @@ package objetos;
 
 public class Asiento {
 	protected Viaje viaje;
-    protected boolean disponibilidad;
     protected String pasajero;
     protected Integer id;
 	
@@ -12,7 +11,6 @@ public class Asiento {
     public Asiento(Viaje viaje) {
 		super();
 		this.viaje = viaje;
-		this.disponibilidad = true;
 		this.pasajero = null;
         this.id = ++ultimoId;
 
@@ -22,8 +20,11 @@ public class Asiento {
 	public Asiento(Viaje viaje, String pasajero) {
 		super();
 		this.viaje = viaje;
-		this.disponibilidad = false;
-		this.pasajero = pasajero;
+		if(pasajero.isEmpty() || pasajero == null) {
+			this.pasajero = null;
+		}else {
+			this.pasajero = pasajero;
+		}
         this.id = ++ultimoId; 
 	}
 	
