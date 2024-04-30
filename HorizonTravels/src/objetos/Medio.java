@@ -38,6 +38,6 @@ public abstract class Medio {
 		this.codigoMedio = codigoMedio;
 	}
 
-	public abstract double calcularPrecio();
+	public abstract double calcularPrecio(Viaje viaje);
 	
 }

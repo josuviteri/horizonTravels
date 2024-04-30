@@ -12,7 +12,7 @@ public class TrenInter extends Tren{
 	}
 
 	 @Override
-	    public double calcularPrecio() {
+	    public double calcularPrecio(Viaje viaje) {
 	        // Precio base + impuesto internacional
 	        return getViaje().getPrecioBase() + impuestoInter ;
 	    }

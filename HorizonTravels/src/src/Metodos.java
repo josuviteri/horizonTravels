@@ -2,14 +2,19 @@ package src;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
 import database.GestorDB;
 import objetos.*;
 
@@ -104,17 +109,75 @@ public class Metodos {
 			GestorDB.eliminarAsiento(asiento.getId(), asiento.getViaje().getCodigo());
 		}
 		
+		borrarCodigoViaje(viaje.getCodigo());
+		
 	}
 	
 	
-	public static void modificarViaje() {
-		//kperezalol
+	public static void modificarViaje(Viaje viaje) {
+		// modificar estaciones de origen y destino
+				Estacion origen = viaje.getOrigen();
+				Estacion destino = viaje.getDestino();
+				GestorDB.modificarEstacion(origen.getCodigo(), origen.getNombre(), origen.getCiudad(), origen.getPais());
+				GestorDB.modificarEstacion(destino.getCodigo(), destino.getNombre(), destino.getCiudad(), destino.getPais());
+
+				Company company = viaje.getCompany();
+
+				if(company.getMedio().getCodigoMedio() == null) {
+					GestorDB.modificarCompany(company.getCodigo(), company.getNombre(), "");
+
+				}else {
+					GestorDB.modificarCompany(company.getCodigo(), company.getNombre(), company.getMedio().getCodigoMedio());
+
+					}
+				       
+				// modificar el medio de transporte (si existe)
+				Medio medio = company.getMedio();
+					if (medio != null) {
+					if (medio instanceof VueloInter) {
+						VueloInter vueloInter = (VueloInter) medio;
+				        int impuestoNacional = (int) Math.round(vueloInter.getImpuestoNacional());
+				        GestorDB.modificarMedio(vueloInter.getCodigoMedio(), impuestoNacional, vueloInter.getViaje().getCodigo(), 1);
+				        	
+				    } else if (medio instanceof VueloNacional) {
+				    	VueloNacional vueloNacional = (VueloNacional) medio;
+				        int impuestoNacional = (int) Math.round(vueloNacional.getImpuestoNacional());
+				        GestorDB.modificarMedio(vueloNacional.getCodigoMedio(), impuestoNacional, vueloNacional.getViaje().getCodigo(), 2);
+				        	
+				    } else if (medio instanceof TrenInter) {
+				    	TrenInter trenInter = (TrenInter) medio;
+				    	int impuestoNacional = (int) Math.round(trenInter.getImpuestoNacional());
+				    	GestorDB.modificarMedio(trenInter.getCodigoMedio(), impuestoNacional, trenInter.getViaje().getCodigo(), 3);
+				        	
+				    } else if (medio instanceof TrenNacional) {
+				    	TrenNacional trenNacional = (TrenNacional) medio;
+				    	int impuestoNacional = (int) Math.round(trenNacional.getImpuestoNacional());
+				    	GestorDB.modificarMedio(trenNacional.getCodigoMedio(), impuestoNacional, trenNacional.getViaje().getCodigo(), 4);
+				        	
+				    } else if (medio instanceof BarcoInter) {
+				    	BarcoInter barcoInter = (BarcoInter) medio;
+				    	int impuestoNacional = (int) Math.round(barcoInter.getImpuestoNacional());
+				     	GestorDB.modificarMedio(barcoInter.getCodigoMedio(), impuestoNacional, barcoInter.getViaje().getCodigo(), 5);
+				        	
+				    } else if (medio instanceof BarcoNacional) {
+				    	BarcoNacional barcoNacional = (BarcoNacional) medio;
+				    	int impuestoNacional = (int) Math.round(barcoNacional.getImpuestoNacional());
+				     	GestorDB.modificarMedio(barcoNacional.getCodigoMedio(), impuestoNacional, barcoNacional.getViaje().getCodigo(), 6);   	
+				    	}
+				    }
+					
+				    GestorDB.modificarViaje(viaje.getCodigo(), viaje.getFecha(), viaje.getOrigen().getCodigo(), viaje.getDestino().getCodigo(), viaje.getCompany().getCodigo(), viaje.getPrecioBase());
+
+				    // modificar los asientos
+				    List<Asiento> asientos = viaje.getAsientos();
+				    for (Asiento asiento : asientos) {
+				    GestorDB.modificarAsiento(asiento.getId(), asiento.getPasajero(), asiento.getViaje().getCodigo());
+				        }
+				    
+
 	}
 	
-//	public static void mostrarDatosViaje(Viaje viaje) {
-//		GestorDB.mostrarDatosViaje(viaje.getCodigo());
-//	}
-	
+
 	
 	public static Viaje recuperarViaje(String codigo_viaje) {
 //		GestorDB.mostrarDatosViaje(codigo_viaje);
@@ -179,11 +242,22 @@ public class Metodos {
 	}
 	
 	
-	//todos
-	public static void cargarTodosViajes() {
-		//iterar con cargarViaje() todas las lineas del .txt
+	public static Map<String, Viaje> cargarTodosViajes() {
+		Map<String, Viaje> mapaViajes = new HashMap<>();
+		List<String> codigos = cargarCodigosViaje();
+		if (codigos != null) {
+		for (String codigoViaje : codigos) {
+			Viaje viaje = recuperarViaje(codigoViaje);
+			mapaViajes.put(codigoViaje, viaje);
+			}
+		}else {
+            System.out.println("La lista de codigos esta vacia.");
+        }
 		
+		return mapaViajes;
 	}
+	
+	
 	
     public static String LongAFecha(long fechaEnMilisegundos) {
         // Crear un objeto Instant desde el valor en milisegundos
@@ -214,6 +288,49 @@ public class Metodos {
     	}
     }
     
+    public static void borrarCodigoViaje(String codigoViaje) {
+        File inputFile = new File(nombre_fichero);
+        File tempFile = new File("tempFile.txt");
+
+        try (Scanner scanner = new Scanner(inputFile);
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
+            while (scanner.hasNextLine()) {
+                String currentLine = scanner.nextLine();
+                if (!currentLine.equals(codigoViaje)) {
+                    writer.write(currentLine + System.getProperty("line.separator"));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (!inputFile.delete()) {
+            System.out.println("No se pudo borrar el archivo original.");
+            return;
+        }
+
+        if (!tempFile.renameTo(inputFile)) {
+            System.out.println("No se pudo renombrar el archivo temporal.");
+        }
+        System.out.println("Código de viaje borrado del fichero.");
+    }
+    
+    public static List<String> cargarCodigosViaje() {
+        List<String> codigos = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(nombre_fichero))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                codigos.add(linea);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return codigos;
+    }
+    
+    
     private static boolean codigoYaExiste(String codigoViaje) {
         try (BufferedReader br = new BufferedReader(new FileReader(nombre_fichero))) {
             String linea;
@@ -226,6 +343,28 @@ public class Metodos {
             e.printStackTrace();
         }
         return false; 
+    }
+    
+    
+    public static Double calcularPrecioViaje(Viaje viaje) {
+    	Double precio = viaje.getCompany().getMedio().calcularPrecio(viaje);
+		return precio;
+    }
+    
+    public static Double calcularMediaPrecio(Map<String, Viaje> mapaViajes){
+    	
+    	 if (mapaViajes == null || mapaViajes.isEmpty()) {
+             System.out.println("El mapa de viajes está vacío o es nulo.");
+             return 0.0;
+         }
+    	
+    	Double total = 0.0;
+    	for (String viaje : mapaViajes.keySet()) {
+    		Viaje v = mapaViajes.get(viaje);
+			total += calcularPrecioViaje(v);
+		}
+    	return total / mapaViajes.size();
+    	
     }
     
 }

@@ -9,6 +9,6 @@ public abstract class Tren extends Medio{
 
 	}
 
-	public abstract double calcularPrecio();
+	public abstract double calcularPrecio(Viaje viaje);
 
 }

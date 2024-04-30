@@ -11,8 +11,6 @@ import objetos.*;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		 // Creación de objetos de ejemplo
 
         // Creación de estaciones
         Estacion estacionOrigen = new Estacion("BI480", "Derio", "Bilbo", "España");
@@ -25,14 +23,9 @@ public class Main {
         company.setMedio(vuelo);
         // Creación de viaje
         Viaje viaje = new Viaje("VIA002", System.currentTimeMillis(), estacionOrigen, estacionDestino, company, 800.0, new ArrayList<>());
-       
-      
+           
         vuelo.setViaje(viaje);
  
-        
-
-        
-        
         List<Asiento> listaAsientos = new ArrayList<Asiento>();
         // Creación de asientos llenos
         Asiento asiento1 = new Asiento(viaje, "Josu");
@@ -42,9 +35,9 @@ public class Main {
         Asiento asiento5 = new Asiento(viaje, "Aitor");
         Asiento asiento6 = new Asiento(viaje, "Clara");
         Asiento asiento7 = new Asiento(viaje, "Seta");
-        Asiento asiento8 = new Asiento(viaje, "Guadi");
+        Asiento asiento8 = new Asiento(viaje, "Fabi");
         Asiento asiento9 = new Asiento(viaje, "Guadi");
-        Asiento asiento10 = new Asiento(viaje, "Guadi");
+        Asiento asiento10 = new Asiento(viaje, "Llerai");
         //asientos vacios
 
 
@@ -71,9 +64,10 @@ public class Main {
 //        Metodos.mostrarDetallesViaje(viaje);
 //        GestorDB.borrarContenidoTablas();
         
-//        GestorDB.mostrarTodosViajes();
-        Metodos.guardarViaje(viaje);
+        GestorDB.mostrarTodosViajes();
+//        Metodos.guardarViaje(viaje);
 //        
+//        Metodos.eliminarViaje(viaje);
 //        String codigo_viaje = viaje.getCodigo();
 //        Viaje nuevoViaje = Metodos.recuperarViaje(codigo_viaje);
 //        Metodos.mostrarDetallesViaje(nuevoViaje);

@@ -13,7 +13,7 @@ public class BarcoInter extends Barco{
 
 	
 	 @Override
-	    public double calcularPrecio() {
+	    public double calcularPrecio(Viaje viaje) {
 	        // Precio base + impuesto internacional
 	        return getViaje().getPrecioBase() + impuestoInter ;
 	    }

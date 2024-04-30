@@ -11,7 +11,7 @@ public abstract class Barco extends Medio{
 		super(impuestoNacional, impuestoInter, codigoMedio);
 	}
 
-	public abstract double calcularPrecio();
+	public abstract double calcularPrecio(Viaje viaje);
 
 	
 	
