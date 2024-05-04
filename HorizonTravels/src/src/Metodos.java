@@ -125,8 +125,8 @@ public class Metodos {
 			if (medio != null) {
 			if (medio instanceof VueloInter) {
 				VueloInter vueloInter = (VueloInter) medio;
-		        int impuestoNacional = (int) Math.round(vueloInter.getImpuestoNacional());
-		        GestorDB.insertarMedio(vueloInter.getCodigoMedio(), impuestoNacional, vueloInter.getViaje().getCodigo(), 1);
+		        int impuestoInter = (int) Math.round(vueloInter.getImpuestoInter());
+		        GestorDB.insertarMedio(vueloInter.getCodigoMedio(), impuestoInter, vueloInter.getViaje().getCodigo(), 1);
 		        	
 		    } else if (medio instanceof VueloNacional) {
 		    	VueloNacional vueloNacional = (VueloNacional) medio;
@@ -135,8 +135,8 @@ public class Metodos {
 		        	
 		    } else if (medio instanceof TrenInter) {
 		    	TrenInter trenInter = (TrenInter) medio;
-		    	int impuestoNacional = (int) Math.round(trenInter.getImpuestoNacional());
-		    	GestorDB.insertarMedio(trenInter.getCodigoMedio(), impuestoNacional, trenInter.getViaje().getCodigo(), 3);
+		    	int impuestoInter = (int) Math.round(trenInter.getImpuestoInter());
+		    	GestorDB.insertarMedio(trenInter.getCodigoMedio(), impuestoInter, trenInter.getViaje().getCodigo(), 3);
 		        	
 		    } else if (medio instanceof TrenNacional) {
 		    	TrenNacional trenNacional = (TrenNacional) medio;
@@ -145,8 +145,8 @@ public class Metodos {
 		        	
 		    } else if (medio instanceof BarcoInter) {
 		    	BarcoInter barcoInter = (BarcoInter) medio;
-		    	int impuestoNacional = (int) Math.round(barcoInter.getImpuestoNacional());
-		     	GestorDB.insertarMedio(barcoInter.getCodigoMedio(), impuestoNacional, barcoInter.getViaje().getCodigo(), 5);
+		    	int impuestoInter = (int) Math.round(barcoInter.getImpuestoNacional());
+		     	GestorDB.insertarMedio(barcoInter.getCodigoMedio(), impuestoInter, barcoInter.getViaje().getCodigo(), 5);
 		        	
 		    } else if (medio instanceof BarcoNacional) {
 		    	BarcoNacional barcoNacional = (BarcoNacional) medio;
@@ -309,10 +309,16 @@ public class Metodos {
         System.out.println("\n\nCodigo del viaje: " + viaje.getCodigo() + 
                            "\nFecha: " + Metodos.LongAFecha(viaje.getFecha()) + 
                            "\nCodigo estacion origen: " + viaje.getOrigen().getCodigo() + 
+                           "\nNombre pais origen: " + viaje.getOrigen().getPais() + 
                            "\nCodigo estacion destino: " + viaje.getDestino().getCodigo() + 
+                           "\nNombre pais destino: " + viaje.getDestino().getPais() + 
                            "\nCodigo de la compañía: " + viaje.getCompany().getCodigo() + 
-                           "\nPrecio del viaje: " + viaje.getPrecioBase());
-	Medio medio = viaje.getCompany().getMedio();
+                           "\nNombre de la compañía: " + viaje.getCompany().getNombre() + 
+                           "\nPrecio base del viaje: " + viaje.getPrecioBase()+
+        				   "\nPrecio completo del viaje: " + viaje.getCompany().getMedio().calcularPrecio(viaje));
+
+
+        Medio medio = viaje.getCompany().getMedio();
 	if (medio instanceof VueloInter) {
 		System.out.println("Tipo de Medio: Vuelo Internacional");
     } else if (medio instanceof VueloNacional) {
