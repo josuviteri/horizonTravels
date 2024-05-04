@@ -104,7 +104,7 @@ public class GestorDB {
 	             PreparedStatement pstmt = conn.prepareStatement(sql);
 	             ResultSet rs = pstmt.executeQuery()) {
 	            while (rs.next()) {
-	                System.out.println("Codigo del viaje: " + rs.getString("codigo_viaje") + "\nFecha: " + Metodos.LongAFecha(rs.getLong("fecha")) + "\nCodigo estacion origen: " + rs.getString("codigo_origen") + "\nCodigo estacion destino: " + rs.getString("codigo_destino") + "\nCodigo de la company: " + rs.getString("codigo_comp") + "\nPrecio del viaje sin impuestos: " + rs.getString("precioBase"));
+	                System.out.println("\n\nCodigo del viaje: " + rs.getString("codigo_viaje") + "\nFecha: " + Metodos.LongAFecha(rs.getLong("fecha")) + "\nCodigo estacion origen: " + rs.getString("codigo_origen") + "\nCodigo estacion destino: " + rs.getString("codigo_destino") + "\nCodigo de la company: " + rs.getString("codigo_comp") + "\nPrecio del viaje sin impuestos: " + rs.getString("precioBase"));
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();

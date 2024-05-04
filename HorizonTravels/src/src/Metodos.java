@@ -21,6 +21,44 @@ import objetos.*;
 public class Metodos {
     private static final String nombre_fichero = "codigos_viaje.txt";
 
+    public static Viaje crearViaje(String codEO,String nomEO,String ciuEO,String anyEO, String codED,String nomED,String ciuED,String anyED, Integer tipMed, String codMed, Integer impMed,String codCo,String nomCo,String codVia, Double precVia) {
+		Estacion estacionOrigen = new Estacion(codEO, nomEO, ciuEO, anyEO);
+		Estacion estacionDestino = new Estacion(codED, nomED, ciuED, anyED);
+		Medio medio = null;
+		switch (tipMed) {
+	    case 1:
+	        medio = new VueloInter(impMed, codMed);
+	        break;
+	    case 2:
+	        medio = new VueloNacional(impMed, codMed);
+	        break;
+	    case 3:
+	        medio = new BarcoInter(impMed, codMed);
+	        break;
+	    case 4:
+	        medio = new BarcoNacional(impMed, codMed);
+	        break;
+	    case 5:
+	        medio = new TrenInter(impMed, codMed);
+	        break;
+	    case 6:
+	        medio = new TrenNacional(impMed, codMed);
+	        break;
+	    default:
+	        System.out.println("Valor de tipMed no valido");
+	        break;
+		}
+		Company company = new Company(codCo, nomCo);
+		company.setMedio(medio);
+		
+		Viaje viaje = new Viaje(codVia, System.currentTimeMillis(), estacionOrigen, estacionDestino, company, precVia, new ArrayList<>());
+		medio.setViaje(viaje);
+		
+		return viaje;
+    }
+    
+    
+    
 	public static void guardarViaje(Viaje viaje) {
 
 		// Insertar estaciones de origen y destino
@@ -112,6 +150,8 @@ public class Metodos {
 		borrarCodigoViaje(viaje.getCodigo());
 		
 	}
+	
+	
 	
 	
 	public static void modificarViaje(Viaje viaje) {
