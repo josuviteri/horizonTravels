@@ -21,7 +21,7 @@ public class Menu {
         String opcion;
 
         do {
-        	System.out.println("\nBienvenido a VerseVault\n\nSelecciona una opcion:\n1. Mostrar viajes\n2. Gestionar Viajes\n3. Gestionar la BD\n\nPulsa 'q' para salir ");
+        	System.out.println("\nBienvenidx a Horizon Travels\n\nSelecciona una opcion:\n1. Mostrar viajes\n2. Gestionar Viajes\n3. Gestionar la BD\n\nPulsa 'q' para salir ");
         	opcion = scanner.nextLine();
         	
         	switch (opcion) {
@@ -102,7 +102,7 @@ public class Menu {
         System.out.println("Introduce la ciudad de la estación de origen:");
         String ciuEO = scanner.nextLine();
 
-        System.out.println("Introduce el año de la estación de origen:");
+        System.out.println("Introduce el pais de la estación de origen:");
         String anyEO = scanner.nextLine();
 
         System.out.println("Introduce el código de la estación de destino:");
@@ -341,10 +341,13 @@ public class Menu {
 		
 	}
 	
-	
-	public static void main(String[] args) {
+	public static void runClaseMenu() {
 		menuInicio();
         scanner.close();
 	}
+//	public static void main(String[] args) {
+//		menuInicio();
+//        scanner.close();
+//	}
 
 }
