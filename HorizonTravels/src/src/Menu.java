@@ -138,7 +138,7 @@ public class Menu {
         System.out.println("Introduce el precio del viaje:");
         Double precVia = Double.parseDouble(scanner.nextLine());
         
-        Viaje viaje = Metodos.crearViaje(codEO, nomEO, ciuEO, anyEO, codED, nomED, ciuED, anyED, tipMed, codMed, impMed, codCo, nomCo, codVia, precVia);
+        Viaje viaje = Metodos.crearViaje(codEO, nomEO, ciuEO, anyEO, codED, nomED, ciuED, anyED, tipMed, codMed, impMed, codCo, nomCo, codVia, precVia, false);
         return viaje;
 	}
 	
@@ -158,8 +158,11 @@ public class Menu {
 
         System.out.println("Introduce el código del viaje:");
         String codVia = scanner.nextLine();
+        
+        System.out.println("Selecciona el tipo de medio de transporte (1-VueloInter, 2-VueloNacional, 3-BarcoInter, 4-BarcoNacional, 5-TrenInter, 6-TrenNacional):");
+        Integer tipMed = Integer.parseInt(scanner.nextLine());
  
-        Viaje viaje = Metodos.crearViaje(codEO, null, null, null, codED, null, null, null, null, codMed, null, codCo, null, codVia, null);
+        Viaje viaje = Metodos.crearViaje(codEO, null, null, null, codED, null, null, null, tipMed, codMed, null, codCo, null, codVia, null, true);
         return viaje;
 	}
 	
@@ -221,7 +224,7 @@ public class Menu {
             case "9":
                 System.out.println("Eliminar todos los viajes");
                 // Lógica para eliminar todo
-                //GestorDB.borrarContenidoTablas();
+                GestorDB.borrarContenidoTablas();
                 break;
             
             case "z":
