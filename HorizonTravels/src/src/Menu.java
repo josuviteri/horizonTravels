@@ -178,6 +178,7 @@ public class Menu {
 	}
 	
 	public static void eliminarViaje() {
+		//FIXME
 		Viaje viaje = introduceDatosElim();
 		Metodos.eliminarViaje(viaje);
 	}
@@ -186,40 +187,20 @@ public class Menu {
 		String opcion;
 
         do {
-        	System.out.println("\n\nMenu de gestion de la BD\n-----------\nSelecciona una opcion\n1. Crear e insertar viajes predeterminados\n2. Existencia de viaje\n3. Existencia de asiento\n4. Existencia de company\n5. Existencia de medio\n6. Existencia de estacion\n9. Eliminar todos los viajes\n\nPulsa 'z' para volver\n");
+            System.out.println("\n\nMenu de gestion de la BD\n-----------\nSelecciona una opcion\n1. Crear e insertar viajes predeterminados\n3. Mostrar BD completa\n9. Eliminar todos los viajes\n\nPulsa 'z' para volver\n");
         	opcion = scanner.nextLine();
         	
         	switch (opcion) {
         	case "1":
                 System.out.println("Crear e insertar viajes predeterminados");
-                crearInsertarViajesPredeterminados();
                 // Lógica para cargar viajes
+                crearInsertarViajesPredeterminados();
                 break;
                 
-        	case "2":
-                System.out.println("Existencia de viaje");
-                // Lógica para eliminar todo
-                //GestorDB.borrarContenidoTablas();
-                break;
         	case "3":
-                System.out.println("Existencia de asiento");
-                // Lógica para eliminar todo
-                //GestorDB.borrarContenidoTablas();
-                break;
-        	case "4":
-                System.out.println("Existencia de company");
-                // Lógica para eliminar todo
-                //GestorDB.borrarContenidoTablas();
-                break;
-        	case "5":
-                System.out.println("Existencia de medio");
-                // Lógica para eliminar todo
-                //GestorDB.borrarContenidoTablas();
-                break;
-        	case "6":
-                System.out.println("Existencia de estacion");
-                // Lógica para eliminar todo
-                //GestorDB.borrarContenidoTablas();
+                System.out.println("Mostrar todo el contenido de la BD sin crear objetos");
+                // Lógica para mostrar todo por sentencias de sql, sin crear objetos
+              GestorDB.mostrarTodosViajes();
                 break;
             case "9":
                 System.out.println("Eliminar todos los viajes");
@@ -248,7 +229,12 @@ public class Menu {
             case "1":
                 System.out.println("Mostrar todos los viajes");
                 // Lógica para Mostrar todos los viajes
-                GestorDB.mostrarTodosViajes();
+
+                Map<String, Viaje> mapaViajes  = Metodos.cargarTodosViajes();
+                for (String codViaje : mapaViajes.keySet()) {
+                	Viaje viaje = mapaViajes.get(codViaje);
+                	Metodos.mostrarDetallesViaje(viaje);
+                }
                 break;
             case "2":
                 System.out.println("Filtrar viajes");

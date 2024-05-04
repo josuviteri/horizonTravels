@@ -275,8 +275,6 @@ public class Metodos {
 		Company company = GestorDB.recuperarCompany(codigo_comp);
 		
 		String codigo_medio = GestorDB.recuperarCodigoMedioDeCompany(codigo_comp);
-		System.out.println("hola");
-		System.out.println(codigo_medio);
 		Medio medio = GestorDB.recuperarMedio(codigo_medio);
 		company.setMedio(medio);
 		
@@ -287,22 +285,28 @@ public class Metodos {
 		Viaje viaje = new Viaje(codigo_viaje, fecha, origen, destino, company, precioBase, new ArrayList<>());
 		//sacar asientos
 		//no recupera el medios
-//		medio.setViaje(viaje);
+		medio.setViaje(viaje);
 		
         List<Asiento> listaAsientos = new ArrayList<Asiento>();
         
         //recuperar todos los 20 asientos llenos y vacios del vuelo
-        for(Integer i = 0; i < 20; i++) {
-        	listaAsientos.add(GestorDB.recuperarAsiento(i, codigo_viaje, viaje));
+        //FIXME!
+//        for(Integer i = 0; i < 20; i++) {
+//        	Asiento asiento = GestorDB.recuperarAsiento(i, codigo_viaje, viaje);
+//        	if(asiento != null) {
+//        		listaAsientos.add(asiento);
+//        	}
+//        }
+        if(listaAsientos != null) {
+        	viaje.setAsientos(listaAsientos);
         }
-        viaje.setAsientos(listaAsientos);
         
 		return viaje;
 	}
 	
 	
 	public static void mostrarDetallesViaje(Viaje viaje) {
-        System.out.println("Codigo del viaje: " + viaje.getCodigo() + 
+        System.out.println("\n\nCodigo del viaje: " + viaje.getCodigo() + 
                            "\nFecha: " + Metodos.LongAFecha(viaje.getFecha()) + 
                            "\nCodigo estacion origen: " + viaje.getOrigen().getCodigo() + 
                            "\nCodigo estacion destino: " + viaje.getDestino().getCodigo() + 
@@ -331,6 +335,7 @@ public class Metodos {
 		if (codigos != null) {
 		for (String codigoViaje : codigos) {
 			Viaje viaje = recuperarViaje(codigoViaje);
+//			mostrarDetallesViaje(viaje);
 			mapaViajes.put(codigoViaje, viaje);
 			}
 		}else {
