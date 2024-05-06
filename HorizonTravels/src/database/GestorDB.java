@@ -142,7 +142,7 @@ public class GestorDB {
 	    
 	 
 	 
-	 private static boolean existeViaje(String codigo_viaje) {
+	 public static boolean existeViaje(String codigo_viaje) {
         String sql = "SELECT * FROM Viaje WHERE codigo_viaje = ?";
 
         try (Connection conn = ConexionDB.obtenerConexion();

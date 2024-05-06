@@ -142,28 +142,30 @@ public class Menu {
         return viaje;
 	}
 	
-	public static Viaje introduceDatosElim() {
-		System.out.println("Introduce el código de la estación de origen:");
-        String codEO = scanner.nextLine();
+	public static void introduceDatosElim() {
+//		System.out.println("Introduce el código de la estación de origen:");
+//        String codEO = scanner.nextLine();
+//
+//       
+//        System.out.println("Introduce el código de la estación de destino:");
+//        String codED = scanner.nextLine();
 
-       
-        System.out.println("Introduce el código de la estación de destino:");
-        String codED = scanner.nextLine();
-
-        System.out.println("Introduce el código del medio de transporte:");
-        String codMed = scanner.nextLine();
-
-        System.out.println("Introduce el código de la compañía:");
-        String codCo = scanner.nextLine();
 
         System.out.println("Introduce el código del viaje:");
         String codVia = scanner.nextLine();
+		
+        System.out.println("Introduce el código del medio de transporte:");
+        String codMed = scanner.nextLine();
+//
+//        System.out.println("Introduce el código de la compañía:");
+//        String codCo = scanner.nextLine();
+
         
-        System.out.println("Selecciona el tipo de medio de transporte (1-VueloInter, 2-VueloNacional, 3-BarcoInter, 4-BarcoNacional, 5-TrenInter, 6-TrenNacional):");
-        Integer tipMed = Integer.parseInt(scanner.nextLine());
+//        System.out.println("Selecciona el tipo de medio de transporte (1-VueloInter, 2-VueloNacional, 3-BarcoInter, 4-BarcoNacional, 5-TrenInter, 6-TrenNacional):");
+//        Integer tipMed = Integer.parseInt(scanner.nextLine());
  
-        Viaje viaje = Metodos.crearViaje(codEO, null, null, null, codED, null, null, null, tipMed, codMed, null, codCo, null, codVia, null, true);
-        return viaje;
+        Metodos.eliminarViajeCodigo(codMed,codVia);
+        
 	}
 	
 	
@@ -178,9 +180,7 @@ public class Menu {
 	}
 	
 	public static void eliminarViaje() {
-		//FIXME
-		Viaje viaje = introduceDatosElim();
-		Metodos.eliminarViaje(viaje);
+		introduceDatosElim();
 	}
 	
 	public static void menuGestionBD() {
@@ -206,6 +206,7 @@ public class Menu {
                 System.out.println("Eliminar todos los viajes");
                 // Lógica para eliminar todo
                 GestorDB.borrarContenidoTablas();
+                Metodos.eliminarCodigosViaje();
                 break;
             
             case "z":
@@ -296,9 +297,9 @@ public class Menu {
         Estacion estacionDestino3 = new Estacion("TK420", "Tokyo", "Tokyo", "Japón");
 
         // Creación de compañía
-        Medio vueloNacional = new VueloNacional(20, "MedioNacional");
-        Medio vueloInternacional1 = new VueloInter(50, "MedioInternacional");
-        Medio vueloInternacional2 = new VueloInter(90, "MedioInternacional");
+        Medio vueloNacional = new VueloNacional(20, "AvionN001");
+        Medio vueloInternacional1 = new VueloInter(50, "AvionI002");
+        Medio vueloInternacional2 = new VueloInter(90, "AvionI003");
         
         Company company1 = new Company("COM001", "Rayanair");
         Company company2 = new Company("COC324", "Cocompany");

@@ -194,7 +194,23 @@ public class Metodos {
 		
 	}
 	
-	
+	public static void eliminarViajeCodigo(String codMed, String codVia) {
+		Viaje viaje = recuperarViaje(codVia);
+
+		List<Asiento> asientos = viaje.getAsientos();
+		for (Asiento asiento : asientos) {
+			GestorDB.eliminarAsiento(asiento.getId(), asiento.getViaje().getCodigo());
+		}
+
+		GestorDB.eliminarMedio(codMed);
+
+		if(GestorDB.existeViaje(codVia)) {
+			borrarCodigoViaje(codVia);
+		}
+		
+		GestorDB.eliminarViaje(codVia);
+		
+	}
 	
 	
 	public static void modificarViaje(Viaje viaje) {
@@ -300,7 +316,9 @@ public class Metodos {
 		Viaje viaje = new Viaje(codigo_viaje, fecha, origen, destino, company, precioBase, new ArrayList<>());
 		//sacar asientos
 		//no recupera el medios
-		medio.setViaje(viaje);
+		if(medio != null) {
+			medio.setViaje(viaje);
+		}
 		
         List<Asiento> listaAsientos = new ArrayList<Asiento>();
         
@@ -329,8 +347,10 @@ public class Metodos {
                            "\nNombre pais destino: " + viaje.getDestino().getPais() + 
                            "\nCodigo de la compañía: " + viaje.getCompany().getCodigo() + 
                            "\nNombre de la compañía: " + viaje.getCompany().getNombre() + 
-                           "\nPrecio base del viaje: " + viaje.getPrecioBase()+
-        				   "\nPrecio completo del viaje: " + viaje.getCompany().getMedio().calcularPrecio(viaje));
+                           "\nPrecio base del viaje: " + viaje.getPrecioBase());
+        if(viaje.getCompany().getMedio() != null) {
+            System.out.println("Precio completo del viaje: " + viaje.getCompany().getMedio().calcularPrecio(viaje));
+        }
 
 
         Medio medio = viaje.getCompany().getMedio();
@@ -437,6 +457,14 @@ public class Metodos {
             return null;
         }
         return codigos;
+    }
+    
+    public static void eliminarCodigosViaje() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombre_fichero))) {
+            writer.write("");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     
