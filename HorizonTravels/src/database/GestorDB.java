@@ -355,30 +355,33 @@ public class GestorDB {
 			}
 	    
 		 public static Asiento recuperarAsiento(Integer asiento_id, String codigo_viaje, Viaje viaje) {
-			 if(existeAsiento(asiento_id, codigo_viaje)) {
-				 String sql = "SELECT * FROM Asiento WHERE asiento_id = ? AND codigo_viaje = ?";
-				 try (Connection conn = ConexionDB.obtenerConexion();
-				         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			    if (existeAsiento(asiento_id, codigo_viaje)) {
+			        String sql = "SELECT * FROM Asiento WHERE asiento_id = ? AND codigo_viaje = ?";
+			        try (Connection conn = ConexionDB.obtenerConexion();
+			             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			            pstmt.setInt(1, asiento_id);
 			            pstmt.setString(2, codigo_viaje);
 			            try (ResultSet rs = pstmt.executeQuery()) {
 			                if (rs.next()) {
 			                    String nombre_pasajero = rs.getString("nombre_pasajero");
-			                    return new Asiento(viaje, nombre_pasajero);
+			                    if (nombre_pasajero != null && !nombre_pasajero.isEmpty()) {
+			                        return new Asiento(viaje, nombre_pasajero);
+			                    } else {
+			                        return null;
+			                    }
 			                } else {
-			                    System.out.println("No se encontró ningun asiento con el id: " + asiento_id + ", del viaje: " + codigo_viaje);
+			                    System.out.println("No se encontró ningún asiento con el id: " + asiento_id + ", del viaje: " + codigo_viaje);
 			                    return null;
 			                }
 			            }
-				 } catch (SQLException e) {
-					e.printStackTrace();
-					return null;
-				}
-			 
-			 
-			 }
-			 return null;
-		 }
+			        } catch (SQLException e) {
+			            e.printStackTrace();
+			            return null;
+			        }
+			    }
+			    return null;
+			}
+
 	    
 
 	    public static void crearTablaCompany() {

@@ -252,14 +252,29 @@ public class Metodos {
 				    GestorDB.modificarViaje(viaje.getCodigo(), viaje.getFecha(), viaje.getOrigen().getCodigo(), viaje.getDestino().getCodigo(), viaje.getCompany().getCodigo(), viaje.getPrecioBase());
 
 				    // modificar los asientos
-				    List<Asiento> asientos = viaje.getAsientos();
-				    for (Asiento asiento : asientos) {
-				    GestorDB.modificarAsiento(asiento.getId(), asiento.getPasajero(), asiento.getViaje().getCodigo());
-				        }
+//				    List<Asiento> asientos = viaje.getAsientos();
+//				    for (Asiento asiento : asientos) {
+//				    GestorDB.modificarAsiento(asiento.getId(), asiento.getPasajero(), asiento.getViaje().getCodigo());
+//				        }
 				    
 
 	}
 	
+	public static void recuperarListaAsientos(String codigo_viaje) {
+        List<Asiento> listaAsientos = new ArrayList<Asiento>();
+        Viaje viaje = recuperarViaje(codigo_viaje);
+      for(Integer i = 0; i < 20; i++) {
+    	Asiento asiento = GestorDB.recuperarAsiento(i, codigo_viaje, viaje);
+    	if(asiento != null) {
+    		System.out.println((i+1)+ ": "+asiento.getPasajero()+ " (ocupado)");
+    	}else {
+    		System.out.println((i+1)+". libre");
+    	}
+    }
+    if(listaAsientos != null) {
+    	viaje.setAsientos(listaAsientos);
+    }
+	}
 
 	
 	public static Viaje recuperarViaje(String codigo_viaje) {

@@ -222,7 +222,7 @@ public class Menu {
         String opcion;
 
         do {
-        	System.out.println("\n\nMenu mostrar viajes\n-----------\nSelecciona una opcion\n1. Mostrar todos los viajes\n2. Filtrar viajes\n\nPulsa 'z' para volver\n");
+        	System.out.println("\n\nMenu mostrar viajes\n-----------\nSelecciona una opcion\n1. Mostrar todos los viajes\n2. Filtrar viajes\n3. Mostrar asientos de un viaje\n\nPulsa 'z' para volver\n");
         	opcion = scanner.nextLine();
         	
         	switch (opcion) {
@@ -236,6 +236,11 @@ public class Menu {
                 System.out.println("Filtrar viajes");
                 // Lógica para Filtrar viajes
                 menuFiltarViajes();
+                break;
+            case "3":
+                System.out.println("Mostrar asientos");
+                // Lógica para mostrar asientos
+                menuMostrarAsientos();
                 break;
             case "z":
                 System.out.println("Volviendo al menu inicial...");
@@ -277,6 +282,11 @@ public class Menu {
         }
 	}
 	
+	public static void menuMostrarAsientos() {
+		System.out.println("Introduce el codigo del viaje:");
+        String codVia = scanner.nextLine();
+        Metodos.recuperarListaAsientos(codVia);
+	}
 	
 	public static void crearInsertarViajesPredeterminados() {
 		
@@ -365,9 +375,5 @@ public class Menu {
 		menuInicio();
         scanner.close();
 	}
-//	public static void main(String[] args) {
-//		menuInicio();
-//        scanner.close();
-//	}
 
 }

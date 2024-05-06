@@ -100,6 +100,8 @@ public class Main {
 //        Metodos.mostrarDetallesViaje(nuevoViaje);
 		
 		
+//		Metodos.recuperarListaAsientos("VIA001");
+		
 		
 		Menu.runClaseMenu();
         
