@@ -229,12 +229,8 @@ public class Menu {
             case "1":
                 System.out.println("Mostrar todos los viajes");
                 // Lógica para Mostrar todos los viajes
-
-                Map<String, Viaje> mapaViajes  = Metodos.cargarTodosViajes();
-                for (String codViaje : mapaViajes.keySet()) {
-                	Viaje viaje = mapaViajes.get(codViaje);
-                	Metodos.mostrarDetallesViaje(viaje);
-                }
+                menuMostrarTodos();
+                
                 break;
             case "2":
                 System.out.println("Filtrar viajes");
@@ -251,10 +247,34 @@ public class Menu {
         } while (!opcion.equals("z"));
 	}
 	
+	public static void menuMostrarTodos() {
+		Map<String, Viaje> mapaViajes  = Metodos.cargarTodosViajes();
+        for (String codViaje : mapaViajes.keySet()) {
+        	Viaje viaje = mapaViajes.get(codViaje);
+        	Metodos.mostrarDetallesViaje(viaje);
+        }
+	}
+	
 	public static void menuFiltarViajes() {
-		//filtrar por ciudad de origen y destino
-		//filtrar por precio maximo
-		//ordenar por mas caros mas baratos mas llenos mas vacios 
+		System.out.println("Introduce el nombre del pais de origen:");
+        String nomOri = scanner.nextLine();
+        System.out.println("Introduce el nombre del pais destino:");
+        String nomDes = scanner.nextLine();
+        System.out.println("Introduce el precio completo maximo:");
+        Integer precioMax = Integer.parseInt(scanner.nextLine());
+        
+        Map<String, Viaje> mapaViajes  = Metodos.cargarTodosViajes();
+        for (String codViaje : mapaViajes.keySet()) {
+        	Viaje viaje = mapaViajes.get(codViaje);
+        	
+        	String origen = viaje.getOrigen().getPais();
+        	String destino = viaje.getDestino().getPais();
+        	Double precio = viaje.getCompany().getMedio().calcularPrecio(viaje);
+        	
+        	if(nomOri.equals(origen) && nomDes.equals(destino) && precio < precioMax) {
+            	Metodos.mostrarDetallesViaje(viaje);
+        	}
+        }
 	}
 	
 	
