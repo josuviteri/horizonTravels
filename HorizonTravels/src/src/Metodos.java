@@ -267,11 +267,11 @@ public class Metodos {
 					
 				    GestorDB.modificarViaje(viaje.getCodigo(), viaje.getFecha(), viaje.getOrigen().getCodigo(), viaje.getDestino().getCodigo(), viaje.getCompany().getCodigo(), viaje.getPrecioBase());
 
-				    // modificar los asientos
-//				    List<Asiento> asientos = viaje.getAsientos();
-//				    for (Asiento asiento : asientos) {
-//				    GestorDB.modificarAsiento(asiento.getId(), asiento.getPasajero(), asiento.getViaje().getCodigo());
-//				        }
+//				     modificar los asientos
+				    List<Asiento> asientos = viaje.getAsientos();
+				    for (Asiento asiento : asientos) {
+				    GestorDB.modificarAsiento(asiento.getId(), asiento.getPasajero(), asiento.getViaje().getCodigo());
+				        }
 				    
 
 	}
@@ -307,27 +307,30 @@ public class Metodos {
 		
 		String codigo_medio = GestorDB.recuperarCodigoMedioDeCompany(codigo_comp);
 		Medio medio = GestorDB.recuperarMedio(codigo_medio);
-		company.setMedio(medio);
+		if(company != null) {
+			company.setMedio(medio);
+
+		}
 		
 		Long fecha = GestorDB.recuperarFechaDeViaje(codigo_viaje);
 		Integer precioBase = GestorDB.recuperarPrecioDeViaje(codigo_viaje);
 		//sacar objeto medio del company
 		//crear objeto viaje
-		Viaje viaje = new Viaje(codigo_viaje, fecha, origen, destino, company, precioBase, new ArrayList<>());
-		//sacar asientos
-		//no recupera el medios
-		if(medio != null) {
-			medio.setViaje(viaje);
-		}
-		
-        List<Asiento> listaAsientos = new ArrayList<Asiento>();
-        
+		if(fecha != null & origen != null & destino != null & company != null & precioBase != null) {
+			Viaje viaje = new Viaje(codigo_viaje, fecha, origen, destino, company, precioBase, new ArrayList<>());
 
-        if(listaAsientos != null) {
-        	viaje.setAsientos(listaAsientos);
-        }
+			if(medio != null) {
+				medio.setViaje(viaje);
+			}
+	        List<Asiento> listaAsientos = new ArrayList<Asiento>();
+
+	        if(listaAsientos != null) {
+	        	viaje.setAsientos(listaAsientos);
+	        }
+	        return viaje;
+		}
         
-		return viaje;
+		return null;
 	}
 	
 	

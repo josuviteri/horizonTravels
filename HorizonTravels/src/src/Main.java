@@ -101,11 +101,41 @@ public class Main {
 		
 		
 //		Metodos.recuperarListaAsientos("VIA001");
-		
-		
-		Menu.runClaseMenu();
+		Viaje viaje;
+	 	Estacion estacionOrigen = new Estacion("BI480", "Derio", "Bilbo", "España");
+        Estacion estacionDestino = new Estacion("NY001", "New York", "New York", "EEUU");
+        Medio vueloInternacional = new VueloInter(50, "AvionI002");
+        Company company= new Company("COC324", "Cocompany");
+
+        company.setMedio(vueloInternacional);
+        viaje = new Viaje("VIA002", System.currentTimeMillis(), estacionOrigen, estacionDestino, company, 800.0, new ArrayList<>());
+        vueloInternacional.setViaje(viaje);
+
+        List<Asiento> listaAsientos = new ArrayList<>();
+        listaAsientos.add(new Asiento(viaje, "Alice"));
+        listaAsientos.add(new Asiento(viaje, "Bob"));
+        listaAsientos.add(new Asiento(viaje, ""));
+        listaAsientos.add(new Asiento(viaje, "Dave"));
+        listaAsientos.add(new Asiento(viaje, "Eva"));
+        listaAsientos.add(new Asiento(viaje, ""));
+        listaAsientos.add(new Asiento(viaje, "Hannah"));
+        listaAsientos.add(new Asiento(viaje, ""));
+        listaAsientos.add(new Asiento(viaje, "Mike"));
+        listaAsientos.add(new Asiento(viaje, "Sophia"));
+
+        viaje.setAsientos(listaAsientos);
+	      Metodos.guardarViaje(viaje);
+
         
-        System.out.println("fin");
+        Metodos.eliminarViaje(viaje);
+        
+//        System.out.println(Metodos.recuperarViaje(viaje.getCodigo()));
+
+		
+//		
+//		Menu.runClaseMenu();
+//        
+//        System.out.println("fin");
 //        Scanner scanner = new Scanner(System.in);
 //        
 ////        System.out.println(viaje.getCompany().getMedio().calcularPrecio());
