@@ -56,22 +56,22 @@ public class GestorDB {
 	}
 	
 	
-	 public static void eliminarViaje(String codigo_viaje) {
-		 if(existeViaje(codigo_viaje)) {
-			 String sql = "DELETE FROM Viaje WHERE codigo_viaje = ? ";
-			 
-			 try (Connection conn = ConexionDB.obtenerConexion();
-		            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-		            
-		            pstmt.executeUpdate();
-		            System.out.println("Viaje eliminado correctamente.");
-		        } catch (Exception e) {
-				e.printStackTrace();
-			}
-		 } else {
-			 System.out.println("No se puede eliminar un viaje inexistente");
-		 }
-	 }
+	public static void eliminarViaje(String codigo_viaje) {
+	    if (existeViaje(codigo_viaje)) {
+	        String sql = "DELETE FROM Viaje WHERE codigo_viaje = ? ";
+
+	        try (Connection conn = ConexionDB.obtenerConexion();
+	             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	            pstmt.setString(1, codigo_viaje); // Establecer el valor del parámetro
+	            pstmt.executeUpdate();
+	            System.out.println("Viaje eliminado correctamente.");
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    } else {
+	        System.out.println("No se puede eliminar un viaje inexistente");
+	    }
+	}
 
 	 
 	 public static void modificarViaje(String codigo_viaje, Long fecha, String codigo_origen, String codigo_destino, String codigo_comp, double precioBase) {
