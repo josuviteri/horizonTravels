@@ -339,7 +339,7 @@ public class GestorDB {
 		    
 		 
 		 
-		 private static boolean existeAsiento(Integer asiento_id, String codigo_viaje) {
+		 public static boolean existeAsiento(Integer asiento_id, String codigo_viaje) {
 			    String sql = "SELECT * FROM Asiento WHERE asiento_id = ? AND codigo_viaje = ?";
 
 			    try (Connection conn = ConexionDB.obtenerConexion();
@@ -473,7 +473,7 @@ public class GestorDB {
 	    
 	 
 	 
-	 private static boolean existeCompany(String codigo_comp) {
+	 public static boolean existeCompany(String codigo_comp) {
 		    String sql = "SELECT * FROM Company WHERE codigo_comp = ?";
 
 		    try (Connection conn = ConexionDB.obtenerConexion();
@@ -627,7 +627,7 @@ public class GestorDB {
 	    
 	 
 	 
-	 private static boolean existeMedio(String codigo_medio) {
+	 public static boolean existeMedio(String codigo_medio) {
 		    String sql = "SELECT * FROM Medio WHERE codigo_medio = ?";
 
 		    try (Connection conn = ConexionDB.obtenerConexion();
@@ -801,7 +801,7 @@ public class GestorDB {
 		 
 	 }
 	 
-	 private static boolean existeEstacion(String codigo_estacion) {
+	 public static boolean existeEstacion(String codigo_estacion) {
 		    String sql = "SELECT * FROM Estacion WHERE codigo_estacion = ?";
 
 		    try (Connection conn = ConexionDB.obtenerConexion();

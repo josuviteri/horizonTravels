@@ -322,14 +322,7 @@ public class Metodos {
 		
         List<Asiento> listaAsientos = new ArrayList<Asiento>();
         
-        //recuperar todos los 20 asientos llenos y vacios del vuelo
-        //FIXME!
-//        for(Integer i = 0; i < 20; i++) {
-//        	Asiento asiento = GestorDB.recuperarAsiento(i, codigo_viaje, viaje);
-//        	if(asiento != null) {
-//        		listaAsientos.add(asiento);
-//        	}
-//        }
+
         if(listaAsientos != null) {
         	viaje.setAsientos(listaAsientos);
         }
@@ -459,7 +452,7 @@ public class Metodos {
         return codigos;
     }
     
-    public static void eliminarCodigosViaje() {
+    public static void eliminarTodosCodigosViaje() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombre_fichero))) {
             writer.write("");
         } catch (IOException e) {

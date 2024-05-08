@@ -206,7 +206,7 @@ public class Menu {
                 System.out.println("Eliminar todos los viajes");
                 // Lógica para eliminar todo
                 GestorDB.borrarContenidoTablas();
-                Metodos.eliminarCodigosViaje();
+                Metodos.eliminarTodosCodigosViaje();
                 break;
             
             case "z":
