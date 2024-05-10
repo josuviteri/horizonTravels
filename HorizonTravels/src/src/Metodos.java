@@ -335,34 +335,36 @@ public class Metodos {
 	
 	
 	public static void mostrarDetallesViaje(Viaje viaje) {
-        System.out.println("\n\nCodigo del viaje: " + viaje.getCodigo() + 
-                           "\nFecha: " + Metodos.LongAFecha(viaje.getFecha()) + 
-                           "\nCodigo estacion origen: " + viaje.getOrigen().getCodigo() + 
-                           "\nNombre pais origen: " + viaje.getOrigen().getPais() + 
-                           "\nCodigo estacion destino: " + viaje.getDestino().getCodigo() + 
-                           "\nNombre pais destino: " + viaje.getDestino().getPais() + 
-                           "\nCodigo de la compañía: " + viaje.getCompany().getCodigo() + 
-                           "\nNombre de la compañía: " + viaje.getCompany().getNombre() + 
-                           "\nPrecio base del viaje: " + viaje.getPrecioBase());
-        if(viaje.getCompany().getMedio() != null) {
-            System.out.println("Precio completo del viaje: " + viaje.getCompany().getMedio().calcularPrecio(viaje));
-        }
-
-
-        Medio medio = viaje.getCompany().getMedio();
-	if (medio instanceof VueloInter) {
-		System.out.println("Tipo de Medio: Vuelo Internacional");
-    } else if (medio instanceof VueloNacional) {
-		System.out.println("Tipo de Medio: Vuelo Nacional");
-    } else if (medio instanceof TrenInter) {
-		System.out.println("Tipo de Medio: Tren Internacional");
-    } else if (medio instanceof TrenNacional) {
-		System.out.println("Tipo de Medio: Tren Nacional");
-    } else if (medio instanceof BarcoInter) {
-		System.out.println("Tipo de Medio: Barco Internacional");
-    } else if (medio instanceof BarcoNacional) {
-		System.out.println("Tipo de Medio: Barco Nacional");
-    }
+       if(viaje != null) {
+    	   System.out.println("\n\nCodigo del viaje: " + viaje.getCodigo() + 
+                   "\nFecha: " + Metodos.LongAFecha(viaje.getFecha()) + 
+                   "\nCodigo estacion origen: " + viaje.getOrigen().getCodigo() + 
+                   "\nNombre pais origen: " + viaje.getOrigen().getPais() + 
+                   "\nCodigo estacion destino: " + viaje.getDestino().getCodigo() + 
+                   "\nNombre pais destino: " + viaje.getDestino().getPais() + 
+                   "\nCodigo de la compañía: " + viaje.getCompany().getCodigo() + 
+                   "\nNombre de la compañía: " + viaje.getCompany().getNombre() + 
+                   "\nPrecio base del viaje: " + viaje.getPrecioBase());
+					if(viaje.getCompany().getMedio() != null) {
+					    System.out.println("Precio completo del viaje: " + viaje.getCompany().getMedio().calcularPrecio(viaje));
+					}
+					
+					
+					Medio medio = viaje.getCompany().getMedio();
+					if (medio instanceof VueloInter) {
+					System.out.println("Tipo de Medio: Vuelo Internacional");
+					} else if (medio instanceof VueloNacional) {
+					System.out.println("Tipo de Medio: Vuelo Nacional");
+					} else if (medio instanceof TrenInter) {
+					System.out.println("Tipo de Medio: Tren Internacional");
+					} else if (medio instanceof TrenNacional) {
+					System.out.println("Tipo de Medio: Tren Nacional");
+					} else if (medio instanceof BarcoInter) {
+					System.out.println("Tipo de Medio: Barco Internacional");
+					} else if (medio instanceof BarcoNacional) {
+					System.out.println("Tipo de Medio: Barco Nacional");
+					}
+       }
 	}
 	
 	
