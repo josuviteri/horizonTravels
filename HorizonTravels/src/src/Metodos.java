@@ -213,67 +213,83 @@ public class Metodos {
 	}
 	
 	
+	public static void modificarViajeCodigo(String codMed, Integer impuesto, Integer tipoMed, String codVia, Double precioBase) {
+		Viaje viaje = recuperarViaje(codVia);
+
+		GestorDB.modificarMedio(codMed, impuesto, codVia, tipoMed);
+		//insertar nueva estacion origen y destino
+		
+		
+		//GestorDB.modificarViaje2(codVia, precioBase);
+		
+	}
+	
+	
 	public static void modificarViaje(Viaje viaje) {
 		// modificar estaciones de origen y destino
-				Estacion origen = viaje.getOrigen();
-				Estacion destino = viaje.getDestino();
-				GestorDB.modificarEstacion(origen.getCodigo(), origen.getNombre(), origen.getCiudad(), origen.getPais());
-				GestorDB.modificarEstacion(destino.getCodigo(), destino.getNombre(), destino.getCiudad(), destino.getPais());
-
-				Company company = viaje.getCompany();
-
-				if(company.getMedio().getCodigoMedio() == null) {
-					GestorDB.modificarCompany(company.getCodigo(), company.getNombre(), "");
-
-				}else {
-					GestorDB.modificarCompany(company.getCodigo(), company.getNombre(), company.getMedio().getCodigoMedio());
-
-					}
-				       
-				// modificar el medio de transporte (si existe)
-				Medio medio = company.getMedio();
-					if (medio != null) {
-					if (medio instanceof VueloInter) {
-						VueloInter vueloInter = (VueloInter) medio;
-				        int impuestoNacional = (int) Math.round(vueloInter.getImpuestoNacional());
-				        GestorDB.modificarMedio(vueloInter.getCodigoMedio(), impuestoNacional, vueloInter.getViaje().getCodigo(), 1);
-				        	
-				    } else if (medio instanceof VueloNacional) {
-				    	VueloNacional vueloNacional = (VueloNacional) medio;
-				        int impuestoNacional = (int) Math.round(vueloNacional.getImpuestoNacional());
-				        GestorDB.modificarMedio(vueloNacional.getCodigoMedio(), impuestoNacional, vueloNacional.getViaje().getCodigo(), 2);
-				        	
-				    } else if (medio instanceof TrenInter) {
-				    	TrenInter trenInter = (TrenInter) medio;
-				    	int impuestoNacional = (int) Math.round(trenInter.getImpuestoNacional());
-				    	GestorDB.modificarMedio(trenInter.getCodigoMedio(), impuestoNacional, trenInter.getViaje().getCodigo(), 3);
-				        	
-				    } else if (medio instanceof TrenNacional) {
-				    	TrenNacional trenNacional = (TrenNacional) medio;
-				    	int impuestoNacional = (int) Math.round(trenNacional.getImpuestoNacional());
-				    	GestorDB.modificarMedio(trenNacional.getCodigoMedio(), impuestoNacional, trenNacional.getViaje().getCodigo(), 4);
-				        	
-				    } else if (medio instanceof BarcoInter) {
-				    	BarcoInter barcoInter = (BarcoInter) medio;
-				    	int impuestoNacional = (int) Math.round(barcoInter.getImpuestoNacional());
-				     	GestorDB.modificarMedio(barcoInter.getCodigoMedio(), impuestoNacional, barcoInter.getViaje().getCodigo(), 5);
-				        	
-				    } else if (medio instanceof BarcoNacional) {
-				    	BarcoNacional barcoNacional = (BarcoNacional) medio;
-				    	int impuestoNacional = (int) Math.round(barcoNacional.getImpuestoNacional());
-				     	GestorDB.modificarMedio(barcoNacional.getCodigoMedio(), impuestoNacional, barcoNacional.getViaje().getCodigo(), 6);   	
-				    	}
-				    }
-					
-				    GestorDB.modificarViaje(viaje.getCodigo(), viaje.getFecha(), viaje.getOrigen().getCodigo(), viaje.getDestino().getCodigo(), viaje.getCompany().getCodigo(), viaje.getPrecioBase());
-
-//				     modificar los asientos
-				    List<Asiento> asientos = viaje.getAsientos();
-				    for (Asiento asiento : asientos) {
-				    GestorDB.modificarAsiento(asiento.getId(), asiento.getPasajero(), asiento.getViaje().getCodigo());
-				        }
+//				Estacion origen = viaje.getOrigen();
+//				Estacion destino = viaje.getDestino();
+//				GestorDB.insertarEstacion(origen.getCodigo(), origen.getNombre(), origen.getCiudad(), origen.getPais());
+//				GestorDB.insertarEstacion(destino.getCodigo(), destino.getNombre(), destino.getCiudad(), destino.getPais());
+//
+//				Company company = viaje.getCompany();
+//
+//				if(company.getMedio().getCodigoMedio() == null) {
+//					GestorDB.modificarCompany(company.getCodigo(), company.getNombre(), "");
+//
+//				}else {
+//					GestorDB.modificarCompany(company.getCodigo(), company.getNombre(), company.getMedio().getCodigoMedio());
+//
+//					}
+//				       
+//				// modificar el medio de transporte (si existe)
+//				Medio medio = company.getMedio();
+//					if (medio != null) {
+//					if (medio instanceof VueloInter) {
+//						VueloInter vueloInter = (VueloInter) medio;
+//				        int impuestoNacional = (int) Math.round(vueloInter.getImpuestoNacional());
+//				        GestorDB.modificarMedio(vueloInter.getCodigoMedio(), impuestoNacional, vueloInter.getViaje().getCodigo(), 1);
+//				        	
+//				    } else if (medio instanceof VueloNacional) {
+//				    	VueloNacional vueloNacional = (VueloNacional) medio;
+//				        int impuestoNacional = (int) Math.round(vueloNacional.getImpuestoNacional());
+//				        GestorDB.modificarMedio(vueloNacional.getCodigoMedio(), impuestoNacional, vueloNacional.getViaje().getCodigo(), 2);
+//				        	
+//				    } else if (medio instanceof TrenInter) {
+//				    	TrenInter trenInter = (TrenInter) medio;
+//				    	int impuestoNacional = (int) Math.round(trenInter.getImpuestoNacional());
+//				    	GestorDB.modificarMedio(trenInter.getCodigoMedio(), impuestoNacional, trenInter.getViaje().getCodigo(), 3);
+//				        	
+//				    } else if (medio instanceof TrenNacional) {
+//				    	TrenNacional trenNacional = (TrenNacional) medio;
+//				    	int impuestoNacional = (int) Math.round(trenNacional.getImpuestoNacional());
+//				    	GestorDB.modificarMedio(trenNacional.getCodigoMedio(), impuestoNacional, trenNacional.getViaje().getCodigo(), 4);
+//				        	
+//				    } else if (medio instanceof BarcoInter) {
+//				    	BarcoInter barcoInter = (BarcoInter) medio;
+//				    	int impuestoNacional = (int) Math.round(barcoInter.getImpuestoNacional());
+//				     	GestorDB.modificarMedio(barcoInter.getCodigoMedio(), impuestoNacional, barcoInter.getViaje().getCodigo(), 5);
+//				        	
+//				    } else if (medio instanceof BarcoNacional) {
+//				    	BarcoNacional barcoNacional = (BarcoNacional) medio;
+//				    	int impuestoNacional = (int) Math.round(barcoNacional.getImpuestoNacional());
+//				     	GestorDB.modificarMedio(barcoNacional.getCodigoMedio(), impuestoNacional, barcoNacional.getViaje().getCodigo(), 6);   	
+//				    	}
+//				    }
+//					
+//				    GestorDB.modificarViaje(viaje.getCodigo(), viaje.getFecha(), viaje.getOrigen().getCodigo(), viaje.getDestino().getCodigo(), viaje.getCompany().getCodigo(), viaje.getPrecioBase());
+//
+////				     modificar los asientos
+//				    List<Asiento> asientos = viaje.getAsientos();
+//				    for (Asiento asiento : asientos) {
+//				    GestorDB.modificarAsiento(asiento.getId(), asiento.getPasajero(), asiento.getViaje().getCodigo());
+//				        }
 				    
-
+		//en proceso
+		//la idea es eliminar parcialmente el viaje anterior y guardar el nuevo sin borrar las
+		//estaciones para no romper los demas viajes y dar la sensacion de que se ha 
+		//modificado el viaje
+		
 	}
 	
 	public static void recuperarListaAsientos(String codigo_viaje) {

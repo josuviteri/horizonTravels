@@ -95,6 +95,7 @@ public class GestorDB {
 		        System.out.println("No se puede modificar un viaje inexistente.");
 		    }
 	 }  
+
 	 
 	 
 	 public static void mostrarTodosViajes() {
