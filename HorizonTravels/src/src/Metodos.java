@@ -213,18 +213,6 @@ public class Metodos {
 	}
 	
 	
-	public static void modificarViajeCodigo(String codMed, Integer impuesto, Integer tipoMed, String codVia, Double precioBase) {
-		Viaje viaje = recuperarViaje(codVia);
-
-		GestorDB.modificarMedio(codMed, impuesto, codVia, tipoMed);
-		//insertar nueva estacion origen y destino
-		
-		
-		//GestorDB.modificarViaje2(codVia, precioBase);
-		
-	}
-	
-	
 	public static void modificarViaje(Viaje viaje) {
 		// modificar estaciones de origen y destino
 //				Estacion origen = viaje.getOrigen();

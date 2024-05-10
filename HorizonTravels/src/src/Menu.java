@@ -162,7 +162,61 @@ public class Menu {
         
 	}
 	
-	
+	public static Viaje introduceDatosModif() {
+		
+		
+		System.out.println("Introduce el código de la estación de origen:");
+        String codEO = scanner.nextLine();
+
+        System.out.println("Introduce el nombre de la estación de origen:");
+        String nomEO = scanner.nextLine();
+
+        System.out.println("Introduce la ciudad de la estación de origen:");
+        String ciuEO = scanner.nextLine();
+
+        System.out.println("Introduce el pais de la estación de origen:");
+        String anyEO = scanner.nextLine();
+
+        System.out.println("Introduce el código de la estación de destino:");
+        String codED = scanner.nextLine();
+
+        System.out.println("Introduce el nombre de la estación de destino:");
+        String nomED = scanner.nextLine();
+
+        System.out.println("Introduce la ciudad de la estación de destino:");
+        String ciuED = scanner.nextLine();
+
+        System.out.println("Introduce el año de la estación de destino:");
+        String anyED = scanner.nextLine();
+
+        System.out.println("Selecciona el tipo de medio de transporte (1-VueloInter, 2-VueloNacional, 3-BarcoInter, 4-BarcoNacional, 5-TrenInter, 6-TrenNacional):");
+        Integer tipMed = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("Introduce el código del medio de transporte:");
+        String codMed = scanner.nextLine();
+
+        System.out.println("Introduce el importe del medio de transporte:");
+        Integer impMed = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("Introduce el código de la compañía:");
+        String codCo = scanner.nextLine();
+
+        System.out.println("Introduce el nombre de la compañía:");
+        String nomCo = scanner.nextLine();
+
+        System.out.println("Introduce el código del viaje:");
+        String codVia = scanner.nextLine();
+
+        System.out.println("Introduce el precio del viaje:");
+        Double precVia = Double.parseDouble(scanner.nextLine());
+        
+        Metodos.eliminarViajeCodigo(codMed,codVia);
+        
+        Viaje viaje = Metodos.crearViaje(codEO, nomEO, ciuEO, anyEO, codED, nomED, ciuED, anyED, tipMed, codMed, impMed, codCo, nomCo, codVia, precVia, false);
+ 
+        return viaje;
+        
+	}
 	
 	
 	public static void insertarViaje() {
@@ -171,8 +225,8 @@ public class Menu {
 	}
 	
 	public static void modificarViaje() {
-		Viaje viaje = introduceDatos();
-		Metodos.modificarViaje(viaje);
+		Viaje viaje = introduceDatosModif();
+		Metodos.guardarViaje(viaje);
 	}
 	
 	public static void eliminarViaje() {
