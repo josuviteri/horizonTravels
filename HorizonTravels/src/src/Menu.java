@@ -137,16 +137,9 @@ public class Menu {
 
         System.out.println("Introduce el código del viaje:");
         String codVia = scanner.nextLine();
-		
-        System.out.println("Selecciona el tipo de medio de transporte (1-VueloInter, 2-VueloNacional, 3-BarcoInter, 4-BarcoNacional, 5-TrenInter, 6-TrenNacional):");
-        Integer tipMed = Integer.parseInt(scanner.nextLine());
 
         System.out.println("Introduce el código del medio de transporte:");
         String codMed = scanner.nextLine();
-
-        System.out.println("Introduce el importe del medio de transporte:");
-        Integer impMed = Integer.parseInt(scanner.nextLine());
-
  
         Metodos.eliminarViajeCodigo(codMed,codVia);
         
