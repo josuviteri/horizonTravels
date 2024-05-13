@@ -76,17 +76,22 @@ public class GestorDB {
 	 
 	 public static void modificarViaje(String codigo_viaje, Long fecha, String codigo_origen, String codigo_destino, String codigo_comp, double precioBase) {
 		 if (existeViaje(codigo_viaje)) {
-		        String sql = "UPDATE Viaje SET codigo_viaje = ?, fecha = ?, codigo_origen = ?, codigo_destino = ?, codigo_comp = ?, precioBase = ? WHERE codigo_viaje = ?";
+		        String sql = "UPDATE Viaje SET fecha = ?, codigo_origen = ?, codigo_destino = ?, codigo_comp = ?, precioBase = ? WHERE codigo_viaje = ?";
 		        
 		        try (Connection conn = ConexionDB.obtenerConexion();
 		             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-		            pstmt.setString(1, codigo_viaje);
-		            pstmt.setLong(2, fecha);
-		            pstmt.setString(3, codigo_origen);
-		            pstmt.setString(4, codigo_destino);
-		            pstmt.setString(5, codigo_comp);
-		            pstmt.setDouble(6, precioBase);
+		            pstmt.setLong(1, fecha);
+		            System.out.println(fecha);
+		            pstmt.setString(2, codigo_origen);
+		            System.out.println(codigo_origen);
+		            pstmt.setString(3, codigo_destino);
+		            System.out.println(codigo_destino);
+		            pstmt.setString(4, codigo_comp);
+		            System.out.println(codigo_comp);
+		            pstmt.setDouble(5, precioBase);
+		            System.out.println(precioBase);
 		            pstmt.executeUpdate();
+		            System.out.println("fin");
 		            System.out.println("Viaje modificado correctamente.");
 		        } catch (SQLException e) {
 		            e.printStackTrace();

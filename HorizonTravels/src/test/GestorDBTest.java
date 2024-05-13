@@ -37,25 +37,6 @@ public class GestorDBTest {
         assertFalse(GestorDB.existeViaje("COD001"));
     }
 
-
-    
-//    @Test
-//    public void testModificarViaje() {
-//        // Inserta un viaje
-//        GestorDB.insertarViaje("COD002", System.currentTimeMillis(), "ORIGEN001", "DESTINO001", "COMP001", 100.0);
-//        // Modifica el viaje
-//        GestorDB.modificarViaje("COD002", System.currentTimeMillis(), "ORIGEN002", "DESTINO002", "COMP002", 200.0);
-//
-//        // Verifica que el viaje se haya modificado correctamente
-//        assertEquals("ORIGEN002", GestorDB.recuperarCodigoOrigenDeViaje("COD002"));
-//        assertEquals("DESTINO002", GestorDB.recuperarCodigoDestinoDeViaje("COD002"));
-//        assertEquals(200.0, GestorDB.recuperarPrecioDeViaje("COD002"), 0.0);
-//    }
-//
-
-
-
-//
     @Test
     public void testRecuperarDatosDeViaje() {
         GestorDB.insertarViaje("COD007", System.currentTimeMillis(), "ORIGEN001", "DESTINO001", "COMP001", 100.0);
@@ -74,19 +55,6 @@ public class GestorDBTest {
         GestorDB.eliminarAsiento(1, "COD001");
         assertFalse(GestorDB.existeAsiento(1, "COD001"));
     }
-
-//    @Test
-//    public void testModificarAsiento() {
-//        // Inserta un asiento
-//        GestorDB.insertarAsiento(1, "Pasajero1", "COD002");
-//        // Modifica el asiento
-//        GestorDB.modificarAsiento(1, "Pasajero2", "COD002");
-//
-//        // Verifica que el asiento se haya modificado correctamente
-//        assertEquals("Pasajero2", GestorDB.recuperarAsiento(1, "COD002", null).getPasajero());
-//    }
-
-
 
     @Test
     public void testRecuperarAsiento() {
