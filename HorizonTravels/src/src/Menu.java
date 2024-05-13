@@ -104,7 +104,7 @@ public class Menu {
         System.out.println("Introduce la ciudad de la estación de destino:");
         String ciuED = scanner.nextLine();
 
-        System.out.println("Introduce el año de la estación de destino:");
+        System.out.println("Introduce el pais de la estación de destino:");
         String anyED = scanner.nextLine();
 
         System.out.println("Selecciona el tipo de medio de transporte (1-VueloInter, 2-VueloNacional, 3-BarcoInter, 4-BarcoNacional, 5-TrenInter, 6-TrenNacional):");
