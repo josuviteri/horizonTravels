@@ -1,6 +1,7 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -169,7 +170,7 @@ public class Menu {
 		String opcion;
 
         do {
-            System.out.println("\n\nMenu de gestion de la BD\n-----------\nSelecciona una opcion\n1. Crear e insertar viajes predeterminados\n3. Mostrar BD completa\n9. Eliminar todos los viajes\n\nPulsa 'z' para volver\n");
+            System.out.println("\n\nMenu de gestion de la BD\n-----------\nSelecciona una opcion\n1. Crear e insertar viajes predeterminados\n3. Mostrar BD completa\n6. Setear base de datos\n9. Eliminar todos los viajes\n\nPulsa 'z' para volver\n");
         	opcion = scanner.nextLine();
         	
         	switch (opcion) {
@@ -183,6 +184,12 @@ public class Menu {
                 System.out.println("Mostrar todo el contenido de la BD sin crear objetos");
                 // Lógica para mostrar todo por sentencias de sql, sin crear objetos
               GestorDB.mostrarTodosViajes();
+                break;
+        	case "6":
+                System.out.println("Setear base de datos");
+              GestorDB.borrarContenidoTablas();
+              Metodos.eliminarTodosCodigosViaje();
+              Menu.crearInsertarViajesPredeterminados();
                 break;
             case "9":
                 System.out.println("Eliminar todos los viajes");
@@ -205,7 +212,7 @@ public class Menu {
         String opcion;
 
         do {
-        	System.out.println("\n\nMenu mostrar viajes\n-----------\nSelecciona una opcion\n1. Mostrar todos los viajes\n2. Filtrar viajes\n3. Mostrar asientos de un viaje\n\nPulsa 'z' para volver\n");
+        	System.out.println("\n\nMenu mostrar viajes\n-----------\nSelecciona una opcion\n1. Mostrar todos los viajes\n2. Filtrar viajes\n3. Mostrar asientos de un viaje\n4. Mostrar viajes ordenados por precio total\n\nPulsa 'z' para volver\n");
         	opcion = scanner.nextLine();
         	
         	switch (opcion) {
@@ -225,6 +232,11 @@ public class Menu {
                 // Lógica para mostrar asientos
                 menuMostrarAsientos();
                 break;
+            case "4":
+                System.out.println("Mostrar todos los viajes ordenados por precio total");
+                // Lógica para mostrar por orden
+                menuOrdenarTodos();
+                break;
             case "z":
                 System.out.println("Volviendo al menu inicial...");
                 break;
@@ -242,6 +254,19 @@ public class Menu {
         	Metodos.mostrarDetallesViaje(viaje);
         }
 	}
+	
+	public static void menuOrdenarTodos() {
+        Map<String, Viaje> mapaViajes = Metodos.cargarTodosViajes();
+        List<Viaje> listaViajes = new ArrayList<>(mapaViajes.values());
+
+        Collections.sort(listaViajes);
+
+
+        for (Viaje viaje : listaViajes) {
+            Metodos.mostrarDetallesViaje(viaje);
+        }
+    }
+	
 	
 	public static void menuFiltarViajes() {
 		System.out.println("Introduce el nombre del pais de origen:");
@@ -329,7 +354,7 @@ public class Menu {
 
         // Creación de otro viaje internacional
         company3.setMedio(vueloInternacional2);
-        Viaje viajeInternacional2 = new Viaje("VIA003", System.currentTimeMillis(), estacionOrigen, estacionDestino3, company3, 1200.0, new ArrayList<>());
+        Viaje viajeInternacional2 = new Viaje("VIA003", System.currentTimeMillis(), estacionOrigen, estacionDestino3, company3, 10500.0, new ArrayList<>());
         vueloInternacional2.setViaje(viajeInternacional2);
 
         // Creación de pasajeros

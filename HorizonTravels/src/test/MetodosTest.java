@@ -111,15 +111,16 @@ class MetodosTest {
 	        Map<String, Viaje> mapaViajes = Metodos.cargarTodosViajes();
 
 	        Double media = Metodos.calcularMediaPrecio(mapaViajes);
-	        assertEquals(786.6666666666666, media);
+	        assertEquals(3886.6666666666665, media);
 	    }
 	    
 	    @Test
 	    public void testLongAFecha() {
-	        long fechaEnMilisegundos = 1620900000000L; // Por ejemplo, 2021-05-13 12:00:00
+	        long fechaEnMilisegundos = 1620900000000L; 
 	        String fechaFormateada = Metodos.LongAFecha(fechaEnMilisegundos);
 	        assertEquals("2021-05-13 12:00:00", fechaFormateada);
 	    	
 	    }
+
 
 }

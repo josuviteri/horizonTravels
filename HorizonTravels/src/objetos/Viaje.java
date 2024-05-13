@@ -3,7 +3,7 @@ package objetos;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Viaje {
+public class Viaje implements Comparable<Viaje>{
 	protected String codigo;
 	protected Long fecha;
 	protected Estacion origen;
@@ -80,8 +80,12 @@ public class Viaje {
 	public void setAsientos(List<Asiento> asientos) {
 		this.asientos = asientos;
 	}
-	
 
+	//comparar precio completo 
+    @Override
+    public int compareTo(Viaje otroViaje) {
+        return Double.compare(this.company.getMedio().calcularPrecio(this), otroViaje.company.getMedio().calcularPrecio(otroViaje));
+    }
 
 	
 }
