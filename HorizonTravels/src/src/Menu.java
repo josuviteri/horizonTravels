@@ -315,7 +315,7 @@ public class Menu {
         listaAsientosNacional.add(new Asiento(viajeNacional, "Josu"));
         listaAsientosNacional.add(new Asiento(viajeNacional, "Gotzon"));
         listaAsientosNacional.add(new Asiento(viajeNacional, "Giovanni"));
-        listaAsientosNacional.add(new Asiento(viajeNacional, ""));
+        listaAsientosNacional.add(new Asiento(viajeNacional, "Esti"));
         listaAsientosNacional.add(new Asiento(viajeNacional, "Aitor"));
         listaAsientosNacional.add(new Asiento(viajeNacional, "Clara"));
         listaAsientosNacional.add(new Asiento(viajeNacional, ""));
