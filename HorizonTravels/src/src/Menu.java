@@ -323,7 +323,7 @@ public class Menu {
         company1.setMedio(vueloNacional);
 
         // Creación de viaje nacional
-        Viaje viajeNacional = new Viaje("VIA001", System.currentTimeMillis(), estacionOrigen, estacionDestino1, company1, 200.0, new ArrayList<>());
+        Viaje viajeNacional = new Viaje("VIA001", 1715757900741L, estacionOrigen, estacionDestino1, company1, 200.0, new ArrayList<>());
         vueloNacional.setViaje(viajeNacional);
 
         // Creación de pasajeros
@@ -343,7 +343,7 @@ public class Menu {
 
         // Creación de viaje internacional
         company2.setMedio(vueloInternacional1);
-        Viaje viajeInternacional1 = new Viaje("VIA002", System.currentTimeMillis(), estacionOrigen, estacionDestino2, company2, 800.0, new ArrayList<>());
+        Viaje viajeInternacional1 = new Viaje("VIA002", 1717209600000L, estacionOrigen, estacionDestino2, company2, 800.0, new ArrayList<>());
         vueloInternacional1.setViaje(viajeInternacional1);
 
         // Creación de pasajeros
@@ -363,7 +363,7 @@ public class Menu {
 
         // Creación de otro viaje internacional
         company3.setMedio(vueloInternacional2);
-        Viaje viajeInternacional2 = new Viaje("VIA003", System.currentTimeMillis(), estacionOrigen, estacionDestino3, company3, 10500.0, new ArrayList<>());
+        Viaje viajeInternacional2 = new Viaje("VIA003", 1796083200000L, estacionOrigen, estacionDestino3, company3, 10500.0, new ArrayList<>());
         vueloInternacional2.setViaje(viajeInternacional2);
 
         // Creación de pasajeros
