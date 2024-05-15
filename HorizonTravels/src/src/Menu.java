@@ -205,7 +205,7 @@ public class Menu {
         String opcion;
 
         do {
-        	System.out.println("\n\nMenu mostrar viajes\n-----------\nSelecciona una opcion\n1. Mostrar todos los viajes\n2. Filtrar viajes\n3. Mostrar asientos de un viaje\n4. Mostrar viajes ordenados por precio total\n\nPulsa 'z' para volver\n");
+        	System.out.println("\n\nMenu mostrar viajes\n-----------\nSelecciona una opcion\n1. Mostrar todos los viajes\n2. Filtrar viajes\n3. Mostrar asientos de un viaje\n4. Mostrar viajes ordenados por precio total\n5. Mostrar viajes ordenados por fecha de salida\nPulsa 'z' para volver\n");
         	opcion = scanner.nextLine();
         	
         	switch (opcion) {
@@ -228,7 +228,12 @@ public class Menu {
             case "4":
                 System.out.println("Mostrar todos los viajes ordenados por precio total");
                 // Lógica para mostrar por orden
-                menuOrdenarTodos();
+                menuOrdenarTodosPrecio();
+                break;
+            case "5":
+                System.out.println("Mostrar todos los viajes ordenados por fecha de salida");
+                // Lógica para mostrar por orden
+                menuOrdenarTodosFecha();
                 break;
             case "z":
                 System.out.println("Volviendo al menu inicial...");
@@ -248,11 +253,11 @@ public class Menu {
         }
 	}
 	
-	public static void menuOrdenarTodos() {
+	public static void menuOrdenarTodosFecha() {
         Map<String, Viaje> mapaViajes = Metodos.cargarTodosViajes();
         List<Viaje> listaViajes = new ArrayList<>(mapaViajes.values());
 
-        Collections.sort(listaViajes);
+        Collections.sort(listaViajes, Viaje.byFecha());
 
 
         for (Viaje viaje : listaViajes) {
@@ -260,6 +265,17 @@ public class Menu {
         }
     }
 	
+	public static void menuOrdenarTodosPrecio() {
+        Map<String, Viaje> mapaViajes = Metodos.cargarTodosViajes();
+        List<Viaje> listaViajes = new ArrayList<>(mapaViajes.values());
+
+        Collections.sort(listaViajes, Viaje.byPrecio());
+
+
+        for (Viaje viaje : listaViajes) {
+            Metodos.mostrarDetallesViaje(viaje);
+        }
+    }
 	
 	public static void menuFiltarViajes() {
 		System.out.println("Introduce el nombre del pais de origen:");
@@ -307,7 +323,7 @@ public class Menu {
         company1.setMedio(vueloNacional);
 
         // Creación de viaje nacional
-        Viaje viajeNacional = new Viaje("VIA001", System.currentTimeMillis(), estacionOrigen, estacionDestino1, company1, 200.0, new ArrayList<>());
+        Viaje viajeNacional = new Viaje("VIA001", 1715757900741L, estacionOrigen, estacionDestino1, company1, 200.0, new ArrayList<>());
         vueloNacional.setViaje(viajeNacional);
 
         // Creación de pasajeros
@@ -327,7 +343,7 @@ public class Menu {
 
         // Creación de viaje internacional
         company2.setMedio(vueloInternacional1);
-        Viaje viajeInternacional1 = new Viaje("VIA002", System.currentTimeMillis(), estacionOrigen, estacionDestino2, company2, 800.0, new ArrayList<>());
+        Viaje viajeInternacional1 = new Viaje("VIA002", 1717209600000L, estacionOrigen, estacionDestino2, company2, 800.0, new ArrayList<>());
         vueloInternacional1.setViaje(viajeInternacional1);
 
         // Creación de pasajeros
@@ -347,7 +363,7 @@ public class Menu {
 
         // Creación de otro viaje internacional
         company3.setMedio(vueloInternacional2);
-        Viaje viajeInternacional2 = new Viaje("VIA003", System.currentTimeMillis(), estacionOrigen, estacionDestino3, company3, 10500.0, new ArrayList<>());
+        Viaje viajeInternacional2 = new Viaje("VIA003", 1796083200000L, estacionOrigen, estacionDestino3, company3, 10500.0, new ArrayList<>());
         vueloInternacional2.setViaje(viajeInternacional2);
 
         // Creación de pasajeros
