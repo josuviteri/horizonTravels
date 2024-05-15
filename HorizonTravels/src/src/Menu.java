@@ -205,7 +205,7 @@ public class Menu {
         String opcion;
 
         do {
-        	System.out.println("\n\nMenu mostrar viajes\n-----------\nSelecciona una opcion\n1. Mostrar todos los viajes\n2. Filtrar viajes\n3. Mostrar asientos de un viaje\n4. Mostrar viajes ordenados por precio total\n\nPulsa 'z' para volver\n");
+        	System.out.println("\n\nMenu mostrar viajes\n-----------\nSelecciona una opcion\n1. Mostrar todos los viajes\n2. Filtrar viajes\n3. Mostrar asientos de un viaje\n4. Mostrar viajes ordenados por precio total\n5. Mostrar viajes ordenados por fecha de salida\nPulsa 'z' para volver\n");
         	opcion = scanner.nextLine();
         	
         	switch (opcion) {
@@ -228,7 +228,12 @@ public class Menu {
             case "4":
                 System.out.println("Mostrar todos los viajes ordenados por precio total");
                 // Lógica para mostrar por orden
-                menuOrdenarTodos();
+                menuOrdenarTodosPrecio();
+                break;
+            case "5":
+                System.out.println("Mostrar todos los viajes ordenados por fecha de salida");
+                // Lógica para mostrar por orden
+                menuOrdenarTodosFecha();
                 break;
             case "z":
                 System.out.println("Volviendo al menu inicial...");
@@ -248,11 +253,11 @@ public class Menu {
         }
 	}
 	
-	public static void menuOrdenarTodos() {
+	public static void menuOrdenarTodosFecha() {
         Map<String, Viaje> mapaViajes = Metodos.cargarTodosViajes();
         List<Viaje> listaViajes = new ArrayList<>(mapaViajes.values());
 
-        Collections.sort(listaViajes);
+        Collections.sort(listaViajes, Viaje.byFecha());
 
 
         for (Viaje viaje : listaViajes) {
@@ -260,6 +265,17 @@ public class Menu {
         }
     }
 	
+	public static void menuOrdenarTodosPrecio() {
+        Map<String, Viaje> mapaViajes = Metodos.cargarTodosViajes();
+        List<Viaje> listaViajes = new ArrayList<>(mapaViajes.values());
+
+        Collections.sort(listaViajes, Viaje.byPrecio());
+
+
+        for (Viaje viaje : listaViajes) {
+            Metodos.mostrarDetallesViaje(viaje);
+        }
+    }
 	
 	public static void menuFiltarViajes() {
 		System.out.println("Introduce el nombre del pais de origen:");

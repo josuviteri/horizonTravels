@@ -1,9 +1,10 @@
 package objetos;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
-public class Viaje implements Comparable<Viaje>{
+public class Viaje{
 	protected String codigo;
 	protected Long fecha;
 	protected Estacion origen;
@@ -82,10 +83,40 @@ public class Viaje implements Comparable<Viaje>{
 	}
 
 	//comparar precio completo 
-    @Override
-    public int compareTo(Viaje otroViaje) {
-        return Double.compare(this.company.getMedio().calcularPrecio(this), otroViaje.company.getMedio().calcularPrecio(otroViaje));
-    }
+//  @Override
+//  public int compareTo(Viaje otroViaje) {
+//      return Double.compare(this.company.getMedio().calcularPrecio(this), otroViaje.company.getMedio().calcularPrecio(otroViaje));
+//  }
+  
+//  @Override
+//  public int compareTo(Viaje otroViaje) {
+//      return Double.compare(this.getFecha(), otroViaje.getFecha());
+//  }
+
+
+	    public static Comparator<Viaje> byPrecio() {
+	        return new Comparator<Viaje>() {
+	            @Override
+	            public int compare(Viaje v1, Viaje v2) {
+	                return Double.compare(v1.getCompany().getMedio().calcularPrecio(v1), v2.getCompany().getMedio().calcularPrecio(v2));
+	            }
+	        };
+	    }
+
+	    public static Comparator<Viaje> byFecha() {
+	        return new Comparator<Viaje>() {
+	            @Override
+	            public int compare(Viaje v1, Viaje v2) {
+	                return Double.compare(v1.getFecha(), v2.getFecha());
+	            }
+	        };
+	    }
+
+//		@Override
+//		public int compareTo(Viaje o) {
+//			// TODO Auto-generated method stub
+//			return 0;
+//		}
 
 	
 }
