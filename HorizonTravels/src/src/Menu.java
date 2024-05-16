@@ -205,7 +205,7 @@ public class Menu {
         String opcion;
 
         do {
-        	System.out.println("\n\nMenu mostrar viajes\n-----------\nSelecciona una opcion\n1. Mostrar todos los viajes\n2. Filtrar viajes\n3. Mostrar asientos de un viaje\n4. Mostrar viajes ordenados por precio total\n5. Mostrar viajes ordenados por fecha de salida\nPulsa 'z' para volver\n");
+        	System.out.println("\n\nMenu mostrar viajes\n-----------\nSelecciona una opcion\n1. Mostrar todos los viajes\n2. Filtrar viajes\n3. Mostrar asientos de un viaje\n4. Mostrar viajes ordenados por precio total\n5. Mostrar viajes ordenados por fecha de salida\n6. Mostrar extremos y precio medio de los viajes\n\nPulsa 'z' para volver\n");
         	opcion = scanner.nextLine();
         	
         	switch (opcion) {
@@ -235,6 +235,11 @@ public class Menu {
                 // Lógica para mostrar por orden
                 menuOrdenarTodosFecha();
                 break;
+            case "6":
+                System.out.println("Mostrar extremos y media");
+                // Lógica para mostrar por orden
+                menuExtremosMedia();
+                break;
             case "z":
                 System.out.println("Volviendo al menu inicial...");
                 break;
@@ -263,6 +268,36 @@ public class Menu {
         for (Viaje viaje : listaViajes) {
             Metodos.mostrarDetallesViaje(viaje);
         }
+    }
+	public static void menuExtremosMedia() {
+        Map<String, Viaje> mapaViajes = Metodos.cargarTodosViajes();
+        Viaje max = null;
+        Double numMax = -1.0;
+        Viaje min = null;
+        Double numMin = 99999.0;
+        Double media = 0.0;
+        for (String codViaje : mapaViajes.keySet()) {
+        	
+        	Viaje viaje = mapaViajes.get(codViaje);
+        	if(viaje.getCompany().getMedio().calcularPrecio(viaje) > numMax) {
+        		max = viaje;
+        		numMax = viaje.getCompany().getMedio().calcularPrecio(viaje);
+        	}
+        	if(viaje.getCompany().getMedio().calcularPrecio(viaje) < numMin) {
+        		min = viaje;
+        		numMin = viaje.getCompany().getMedio().calcularPrecio(viaje);
+        	}
+        	media += viaje.getCompany().getMedio().calcularPrecio(viaje);
+        	
+        }
+        
+        media = media / mapaViajes.keySet().size();
+        System.out.println(String.format("Precio medio total: %.2f", media));
+        System.out.println("\nDetalles del viaje mas barato");
+        Metodos.mostrarDetallesViaje(min);
+        System.out.println("\nDetalles del viaje mas caro");
+    	Metodos.mostrarDetallesViaje(max);
+
     }
 	
 	public static void menuOrdenarTodosPrecio() {
